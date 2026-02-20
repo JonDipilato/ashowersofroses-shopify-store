@@ -73,7 +73,8 @@
         </ul>
       </aside>
 
-      {% form 'product', product, class: 'product-form', id: 'ProductForm-' | append: section.id %}
+      {%- assign product_form_id = 'ProductForm-' | append: section.id -%}
+      {% form 'product', product, class: 'product-form', id: product_form_id %}
         {% unless product.has_only_default_variant %}
           <div class="variant-picker">
             <div class="form-field">
