@@ -1,0 +1,35 @@
+<section class="section-shell">
+  <div class="page-width" style="max-width: 480px; margin-inline: auto;">
+    <h1 class="section-heading">Create account</h1>
+
+    {% form 'create_customer' %}
+      <div style="margin-top: 1.4rem; display: grid; gap: 0.8rem;">
+        {% if form.errors %}
+          <div class="form-status form-status--error">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+        <div class="form-field">
+          <label for="FirstName">First name</label>
+          <input type="text" id="FirstName" name="customer[first_name]" autocomplete="given-name" required>
+        </div>
+        <div class="form-field">
+          <label for="LastName">Last name</label>
+          <input type="text" id="LastName" name="customer[last_name]" autocomplete="family-name" required>
+        </div>
+        <div class="form-field">
+          <label for="Email">Email</label>
+          <input type="email" id="Email" name="customer[email]" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label for="Password">Password</label>
+          <input type="password" id="Password" name="customer[password]" autocomplete="new-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-wide">Create account</button>
+        <p style="text-align: center; font-size: 0.88rem;">
+          Already have an account? <a href="{{ routes.account_login_url }}">Sign in</a>
+        </p>
+      </div>
+    {% endform %}
+  </div>
+</section>

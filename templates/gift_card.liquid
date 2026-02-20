@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ 'gift_cards.issued.title' | t }} - {{ shop.name }}</title>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <style>
+    body { display: grid; place-items: center; min-height: 100vh; padding: 2rem; font-family: serif; background: #faf8f4; color: #1e1c1a; }
+    .gift-card { max-width: 460px; text-align: center; }
+    .gift-card__heading { font-size: 2rem; margin: 0 0 0.5rem; }
+    .gift-card__subhead { margin: 0 0 1.5rem; opacity: 0.7; }
+    .gift-card__image { max-width: 100%; border-radius: 12px; margin-bottom: 1.5rem; }
+    .gift-card__code { font-size: 1.4rem; letter-spacing: 0.15em; padding: 0.8rem 1.2rem; border: 2px dashed #b9a06a; border-radius: 8px; margin-bottom: 1rem; display: inline-block; }
+    .gift-card__amount { font-size: 2.5rem; font-weight: 700; margin: 0 0 1.5rem; }
+    .gift-card__shop-link { display: inline-block; padding: 0.7rem 1.5rem; background: #b9a06a; color: #fff; text-decoration: none; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <main class="gift-card">
+    <h1 class="gift-card__heading">{{ shop.name }}</h1>
+    <p class="gift-card__subhead">{{ 'gift_cards.issued.subtext' | t }}</p>
+
+    {% if gift_card.image %}
+      <img class="gift-card__image" src="{{ gift_card.image | image_url: width: 600 }}" alt="{{ shop.name }} gift card">
+    {% endif %}
+
+    <p class="gift-card__amount">{{ gift_card.balance | money }}</p>
+
+    <div class="gift-card__code" id="GiftCardCode">{{ gift_card.code | format_code }}</div>
+
+    {% if gift_card.pass_url %}
+      <p style="margin: 1rem 0;">
+        <a href="{{ gift_card.pass_url }}">{{ 'gift_cards.issued.add_to_apple_wallet' | t }}</a>
+      </p>
+    {% endif %}
+
+    <p style="margin-top: 1.5rem;">
+      <a href="{{ shop.url }}" class="gift-card__shop-link">Shop now</a>
+    </p>
+
+    {% if gift_card.expired? %}
+      <p style="margin-top: 1rem; color: #8f1f2f;">{{ 'gift_cards.issued.expired' | t }}</p>
+    {% endif %}
+  </main>
+</body>
+</html>

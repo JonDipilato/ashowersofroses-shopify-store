@@ -1,0 +1,36 @@
+<section class="section-shell">
+  <div class="page-width">
+    <h1 class="section-heading">Collections</h1>
+
+    <div class="sacrament-grid" style="margin-top: 1.4rem;">
+      {% for collection in collections %}
+        {% if collection.handle != 'all' %}
+          <a href="{{ collection.url }}" class="sacrament-card card-surface">
+            {% if collection.image %}
+              <div class="sacrament-card__media">
+                {{ collection.image | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 33vw, 50vw', widths: '320,480,640,720' }}
+              </div>
+            {% elsif collection.products.first.featured_image %}
+              <div class="sacrament-card__media">
+                {{ collection.products.first.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 33vw, 50vw', widths: '320,480,640,720' }}
+              </div>
+            {% endif %}
+            <div class="sacrament-card__body">
+              <h2 class="sacrament-card__title">{{ collection.title }}</h2>
+              {% if collection.description != blank %}
+                <p class="sacrament-card__desc">{{ collection.description | strip_html | truncatewords: 20 }}</p>
+              {% endif %}
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "settings": []
+}
+{% endschema %}

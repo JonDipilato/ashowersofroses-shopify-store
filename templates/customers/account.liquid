@@ -1,0 +1,44 @@
+<section class="section-shell">
+  <div class="page-width">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 1rem;">
+      <h1 class="section-heading">My account</h1>
+      <a href="{{ routes.account_logout_url }}" class="btn btn-secondary">Sign out</a>
+    </div>
+
+    <div class="account-layout" style="margin-top: 1.6rem;">
+      <div>
+        <h2 style="font-family: var(--font-display); font-size: 1.4rem;">Order history</h2>
+        {% if customer.orders.size > 0 %}
+          <div style="margin-top: 1rem; display: grid; gap: 0.8rem;">
+            {% for order in customer.orders %}
+              <div class="card-surface" style="padding: 1rem; display: grid; gap: 0.3rem;">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                  <a href="{{ order.customer_url }}" style="font-weight: 600;">{{ order.name }}</a>
+                  <span style="font-size: 0.85rem;">{{ order.created_at | date: '%B %d, %Y' }}</span>
+                </div>
+                <p style="margin: 0; font-size: 0.88rem;">
+                  {{ order.financial_status_label }} &mdash; {{ order.fulfillment_status_label }}
+                </p>
+                <p style="margin: 0; font-weight: 500;">{{ order.total_net_amount | money }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p style="margin-top: 1rem;">No orders yet.</p>
+        {% endif %}
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 1rem;">
+          <h2 style="font-family: var(--font-display); font-size: 1.4rem;">Addresses</h2>
+          <a href="{{ routes.account_addresses_url }}" style="font-size: 0.85rem;">Manage addresses</a>
+        </div>
+        {% if customer.default_address %}
+          <div class="card-surface" style="padding: 1rem; margin-top: 1rem;">
+            <p style="margin: 0;">{{ customer.default_address | format_address }}</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

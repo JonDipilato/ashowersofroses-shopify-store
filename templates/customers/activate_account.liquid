@@ -1,0 +1,28 @@
+<section class="section-shell">
+  <div class="page-width" style="max-width: 480px; margin-inline: auto;">
+    <h1 class="section-heading">Activate your account</h1>
+    <p class="section-subhead">Create a password to activate your account.</p>
+
+    {% form 'activate_customer_password' %}
+      <div style="margin-top: 1.4rem; display: grid; gap: 0.8rem;">
+        {% if form.errors %}
+          <div class="form-status form-status--error">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+        <div class="form-field">
+          <label for="Password">Password</label>
+          <input type="password" id="Password" name="customer[password]" autocomplete="new-password" required>
+        </div>
+        <div class="form-field">
+          <label for="PasswordConfirm">Confirm password</label>
+          <input type="password" id="PasswordConfirm" name="customer[password_confirmation]" autocomplete="new-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-wide">Activate account</button>
+        <p style="text-align: center; font-size: 0.88rem;">
+          <a href="{{ routes.account_login_url }}">Decline invitation</a>
+        </p>
+      </div>
+    {% endform %}
+  </div>
+</section>

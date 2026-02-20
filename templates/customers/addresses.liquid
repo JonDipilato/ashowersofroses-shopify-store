@@ -1,0 +1,89 @@
+<section class="section-shell">
+  <div class="page-width" style="max-width: 560px; margin-inline: auto;">
+    <p style="margin: 0 0 0.5rem;"><a href="{{ routes.account_url }}">&larr; Back to account</a></p>
+    <h1 class="section-heading">Your addresses</h1>
+
+    {% if customer.addresses.size > 0 %}
+      <div style="margin-top: 1.4rem; display: grid; gap: 1rem;">
+        {% for address in customer.addresses %}
+          <div class="card-surface" style="padding: 1rem;">
+            <p style="margin: 0;">{{ address | format_address }}</p>
+            {% if address == customer.default_address %}
+              <p style="margin: 0.5rem 0 0; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-botanical);">Default address</p>
+            {% endif %}
+            <div style="margin-top: 0.8rem; display: flex; gap: 0.6rem;">
+              <a href="{{ routes.account_addresses_url }}/{{ address.id }}/edit" style="font-size: 0.82rem;">Edit</a>
+              {% unless address == customer.default_address %}
+                <button
+                  onclick="Shopify.postLink('{{ routes.account_addresses_url }}/{{ address.id }}', { parameters: { _method: 'delete' }, message: 'Are you sure you want to delete this address?' })"
+                  style="font-size: 0.82rem; background: none; border: none; cursor: pointer; color: var(--color-rose); text-decoration: underline; padding: 0;"
+                >Delete</button>
+              {% endunless %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div style="margin-top: 2rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.3rem;">Add a new address</h2>
+      {% form 'customer_address', customer.new_address %}
+        <div style="margin-top: 1rem; display: grid; gap: 0.8rem;">
+          <div class="form-field">
+            <label for="AddressFirstName">First name</label>
+            <input type="text" id="AddressFirstName" name="address[first_name]" autocomplete="given-name">
+          </div>
+          <div class="form-field">
+            <label for="AddressLastName">Last name</label>
+            <input type="text" id="AddressLastName" name="address[last_name]" autocomplete="family-name">
+          </div>
+          <div class="form-field">
+            <label for="AddressCompany">Company (optional)</label>
+            <input type="text" id="AddressCompany" name="address[company]" autocomplete="organization">
+          </div>
+          <div class="form-field">
+            <label for="AddressAddress1">Address</label>
+            <input type="text" id="AddressAddress1" name="address[address1]" autocomplete="address-line1" required>
+          </div>
+          <div class="form-field">
+            <label for="AddressAddress2">Apartment, suite, etc. (optional)</label>
+            <input type="text" id="AddressAddress2" name="address[address2]" autocomplete="address-line2">
+          </div>
+          <div class="form-field">
+            <label for="AddressCity">City</label>
+            <input type="text" id="AddressCity" name="address[city]" autocomplete="address-level2" required>
+          </div>
+          <div class="form-field">
+            <label for="AddressCountry">Country/region</label>
+            <select id="AddressCountry" name="address[country]" autocomplete="country">
+              {{ all_country_option_tags }}
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="AddressProvince">Province/state</label>
+            <select id="AddressProvince" name="address[province]" autocomplete="address-level1"></select>
+          </div>
+          <div class="form-field">
+            <label for="AddressZip">Postal/ZIP code</label>
+            <input type="text" id="AddressZip" name="address[zip]" autocomplete="postal-code" required>
+          </div>
+          <div class="form-field">
+            <label for="AddressPhone">Phone (optional)</label>
+            <input type="tel" id="AddressPhone" name="address[phone]" autocomplete="tel">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" id="AddressDefault" name="address[default]" value="1">
+            <label for="AddressDefault" style="font-size: 0.88rem;">Set as default address</label>
+          </div>
+          <button type="submit" class="btn btn-primary" style="justify-self: start;">Add address</button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+<script>
+  if (window.Shopify && Shopify.CountryProvinceSelector) {
+    new Shopify.CountryProvinceSelector('AddressCountry', 'AddressProvince', { hideElement: 'AddressProvinceContainer' });
+  }
+</script>

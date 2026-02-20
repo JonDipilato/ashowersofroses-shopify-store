@@ -1,0 +1,50 @@
+{% paginate blog.articles by 12 %}
+<section class="section-shell">
+  <div class="page-width">
+    <h1 class="section-heading">{{ blog.title }}</h1>
+
+    {% if blog.articles_count > 0 %}
+      <div class="blog-grid" style="margin-top: 1.4rem;">
+        {% for article in blog.articles %}
+          <article class="blog-card card-surface">
+            {% if article.image %}
+              <a href="{{ article.url }}" class="blog-card__image">
+                {{ article.image | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw', widths: '320,480,640,720' }}
+              </a>
+            {% endif %}
+            <div class="blog-card__content">
+              <time class="section-kicker" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                {{ article.published_at | date: '%B %d, %Y' }}
+              </time>
+              <h2 class="blog-card__title">
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h2>
+              {% if article.excerpt != blank %}
+                <p class="blog-card__excerpt">{{ article.excerpt | strip_html | truncatewords: 30 }}</p>
+              {% endif %}
+              <a href="{{ article.url }}" class="blog-card__link">Read more</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <nav class="pagination" style="margin-top: 1.6rem;">
+          {{ paginate | default_pagination }}
+        </nav>
+      {% endif %}
+    {% else %}
+      <div class="empty-state" style="margin-top: 1.4rem; text-align: center; padding: 2.5rem 1rem;">
+        <p>No articles yet. Check back soon.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": []
+}
+{% endschema %}

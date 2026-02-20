@@ -1,0 +1,76 @@
+<section class="section-shell">
+  <div class="page-width">
+    <article class="article-layout">
+      <header class="article-header">
+        <p class="section-kicker">
+          <a href="{{ blog.url }}">{{ blog.title }}</a>
+          &mdash;
+          <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %d, %Y' }}</time>
+        </p>
+        <h1 class="section-heading">{{ article.title }}</h1>
+        {% if article.author != blank %}
+          <p class="article-author">By {{ article.author }}</p>
+        {% endif %}
+      </header>
+
+      {% if article.image %}
+        <div class="article-image">
+          {{ article.image | image_url: width: 1200 | image_tag: loading: 'eager', sizes: '(min-width: 900px) 800px, 100vw', widths: '480,640,800,1000,1200' }}
+        </div>
+      {% endif %}
+
+      <div class="rte article-body">
+        {{ article.content }}
+      </div>
+
+      {% if blog.comments_enabled? %}
+        <div class="article-comments" style="margin-top: 2.5rem;">
+          <h2 style="font-family: var(--font-display); font-size: 1.5rem;">Comments</h2>
+
+          {% if article.comments_count > 0 %}
+            {% for comment in article.comments %}
+              <div class="article-comment card-surface" style="padding: 1rem; margin-top: 1rem;">
+                <p style="margin: 0;"><strong>{{ comment.author }}</strong> &mdash; <time>{{ comment.created_at | date: '%B %d, %Y' }}</time></p>
+                <div class="rte" style="margin-top: 0.5rem;">{{ comment.content }}</div>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          {% form 'new_comment', article %}
+            <div style="margin-top: 1.2rem; display: grid; gap: 0.8rem; max-width: 560px;">
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem;">Leave a comment</h3>
+              {% if form.errors %}
+                <div class="form-status form-status--error">
+                  {{ form.errors | default_errors }}
+                </div>
+              {% endif %}
+              {% if form.posted_successfully? %}
+                <p class="form-status form-status--success">Your comment has been submitted.</p>
+              {% endif %}
+              <div class="form-field">
+                <label for="CommentAuthor">Name</label>
+                <input type="text" id="CommentAuthor" name="comment[author]" value="{{ form.author }}" required>
+              </div>
+              <div class="form-field">
+                <label for="CommentEmail">Email</label>
+                <input type="email" id="CommentEmail" name="comment[email]" value="{{ form.email }}" required>
+              </div>
+              <div class="form-field">
+                <label for="CommentBody">Comment</label>
+                <textarea id="CommentBody" name="comment[body]" required>{{ form.body }}</textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="justify-self: start;">Post comment</button>
+            </div>
+          {% endform %}
+        </div>
+      {% endif %}
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": []
+}
+{% endschema %}

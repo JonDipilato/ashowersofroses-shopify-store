@@ -1,0 +1,65 @@
+<section class="section-shell">
+  <div class="page-width">
+    <h1 class="section-heading">Search</h1>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" style="margin-top: 1.4rem;">
+      <div class="search-bar">
+        <input
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search our collection..."
+          class="search-bar__input"
+          aria-label="Search"
+        >
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <p class="section-subhead" style="margin-top: 1.4rem;">
+          {{ search.results_count }} {{ search.results_count | pluralize: 'result', 'results' }} for &ldquo;{{ search.terms }}&rdquo;
+        </p>
+        <div class="product-grid" style="margin-top: 1.4rem;">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'product-card', product: item %}
+            {% else %}
+              <article class="card-surface" style="padding: 1rem;">
+                <h3 class="product-card__title">
+                  <a href="{{ item.url }}">{{ item.title }}</a>
+                </h3>
+                {% if item.content != blank %}
+                  <p class="product-card__note">{{ item.content | strip_html | truncatewords: 30 }}</p>
+                {% endif %}
+              </article>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if search.results.size < search.results_count %}
+          {% paginate search.results by 24 %}
+            {% if paginate.pages > 1 %}
+              <nav class="pagination" style="margin-top: 1.6rem;">
+                {{ paginate | default_pagination }}
+              </nav>
+            {% endif %}
+          {% endpaginate %}
+        {% endif %}
+      {% else %}
+        <div class="empty-state" style="margin-top: 1.4rem; text-align: center; padding: 2.5rem 1rem;">
+          <p>No results for &ldquo;{{ search.terms }}&rdquo;</p>
+          <a href="/collections/all" class="btn btn-primary" style="margin-top: 1rem;">Browse all products</a>
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": []
+}
+{% endschema %}
