@@ -1,0 +1,30 @@
+<div class="cart-drawer" data-cart-drawer aria-hidden="true">
+  <div class="cart-drawer__overlay" data-cart-drawer-overlay></div>
+  <aside class="cart-drawer__panel" role="dialog" aria-label="Shopping cart">
+    <header class="cart-drawer__header">
+      <h2 class="cart-drawer__title">Your cart</h2>
+      <button class="cart-drawer__close" data-cart-drawer-close aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="cart-drawer__body" data-cart-drawer-body>
+      <div class="cart-drawer__empty" data-cart-drawer-empty>
+        <p>Your cart is empty</p>
+        <a href="/collections/all" class="btn btn-primary" data-cart-drawer-close>Start shopping</a>
+      </div>
+      <div class="cart-drawer__items" data-cart-drawer-items></div>
+    </div>
+
+    <footer class="cart-drawer__footer" data-cart-drawer-footer hidden>
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <span data-cart-drawer-subtotal></span>
+      </div>
+      <a href="/checkout" class="btn btn-primary btn-wide">Checkout</a>
+      <button class="btn btn-secondary btn-wide" data-cart-drawer-close>Continue shopping</button>
+    </footer>
+  </aside>
+</div>

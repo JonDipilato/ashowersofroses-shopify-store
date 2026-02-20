@@ -31,11 +31,9 @@
         {% if shop.customer_accounts_enabled %}
           <a class="header-utility-link" href="{{ routes.account_url }}">{{ 'header.account' | t }}</a>
         {% endif %}
-        <a class="header-utility-link" href="{{ routes.cart_url }}">
+        <a class="header-utility-link" href="{{ routes.cart_url }}" data-cart-drawer-toggle>
           {{ 'header.cart' | t }}
-          {% if cart.item_count > 0 %}
-            ({{ cart.item_count }})
-          {% endif %}
+          <span data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>({{ cart.item_count }})</span>
         </a>
       </div>
     </div>

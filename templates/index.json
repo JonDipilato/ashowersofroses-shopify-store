@@ -9,7 +9,8 @@
         "divider_style": "arabesque",
         "overlay_opacity": 45,
         "primary_label": "Shop all gifts",
-        "secondary_label": "Read our story"
+        "primary_link": "/collections/all",
+        "secondary_label": "Browse by sacrament"
       }
     },
     "trust": {
@@ -51,13 +52,13 @@
       "block_order": ["trust_item_1", "trust_item_2", "trust_item_3", "trust_item_4"],
       "settings": {}
     },
-    "featured": {
-      "type": "featured-collection",
+    "catalog": {
+      "type": "catalog-grid",
       "settings": {
-        "kicker": "Handpicked",
-        "heading": "Featured for this season",
-        "subheading": "A refined selection prepared for meaningful giving.",
-        "product_limit": 4,
+        "kicker": "Full collection",
+        "heading": "Shop our collection",
+        "subheading": "Every piece in our atelier, ready to give.",
+        "product_limit": 25,
         "show_vendor": false
       }
     },
@@ -67,33 +68,6 @@
         "kicker": "Sacramental path",
         "heading": "Shop by sacrament",
         "subheading": "Guide families and godparents to gifts that honor each sacrament with care."
-      }
-    },
-    "story": {
-      "type": "editorial-story",
-      "settings": {
-        "kicker": "Our curation",
-        "heading": "A boutique approach to Catholic gifting",
-        "body": "<p>Each piece is selected for beauty, craftsmanship, and spiritual depth so your gift feels worthy of the moment.</p>",
-        "divider_style": "arabesque",
-        "cta_label": "Meet the atelier"
-      }
-    },
-    "liturgical": {
-      "type": "liturgical-band",
-      "settings": {
-        "season": "Current observance",
-        "heading": "A curated edit for this liturgical season",
-        "text": "Highlight devotionals, home blessings, and keepsakes that align with the Church calendar.",
-        "button_label": "Shop the seasonal edit"
-      }
-    },
-    "guides": {
-      "type": "gift-guides",
-      "settings": {
-        "kicker": "Guided shopping",
-        "heading": "Gift guides by relationship and moment",
-        "subheading": "Build intentional gifts for godchildren, catechumens, newlyweds, and devoted hosts."
       }
     },
     "testimonials": {
@@ -113,5 +87,5 @@
       }
     }
   },
-  "order": ["hero", "trust", "featured", "sacraments", "story", "liturgical", "guides", "testimonials", "newsletter"]
+  "order": ["hero", "trust", "catalog", "sacraments", "testimonials", "newsletter"]
 }

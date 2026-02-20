@@ -4,6 +4,22 @@
       {% if product.featured_image %}
         {{ product.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 25vw, (min-width: 600px) 50vw, 100vw', widths: '220,320,480,640,720', alt: product.featured_image.alt | escape }}
       {% endif %}
+
+      <div class="product-card__badges">
+        {% unless product.available %}
+          <span class="product-card__badge product-card__badge--sold-out">Sold out</span>
+        {% endunless %}
+        {% if product.compare_at_price > product.price and product.available %}
+          <span class="product-card__badge product-card__badge--sale">Sale</span>
+        {% endif %}
+        {% assign now_ts = 'now' | date: '%s' | plus: 0 %}
+        {% assign created_ts = product.created_at | date: '%s' | plus: 0 %}
+        {% assign thirty_days = 2592000 %}
+        {% assign age = now_ts | minus: created_ts %}
+        {% if age <= thirty_days and product.available %}
+          <span class="product-card__badge product-card__badge--new">New</span>
+        {% endif %}
+      </div>
     </a>
     <div class="product-card__content">
       {% if show_vendor and product.vendor != blank %}
@@ -16,6 +32,20 @@
       {% if product.metafields.custom.gift_note != blank %}
         <p class="product-card__note">{{ product.metafields.custom.gift_note | metafield_tag }}</p>
       {% endif %}
+
+      <div class="product-card__action">
+        {% if product.available == false %}
+          <button class="btn btn-primary btn-wide btn-compact" disabled>Sold out</button>
+        {% elsif product.variants.size == 1 %}
+          <form class="product-card__atc-form" action="/cart/add" method="post" data-quick-atc>
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="btn btn-primary btn-wide btn-compact">Add to cart</button>
+          </form>
+        {% else %}
+          <a href="{{ product.url }}" class="btn btn-secondary btn-wide btn-compact">Choose options</a>
+        {% endif %}
+      </div>
     </div>
   </article>
 {% endif %}
