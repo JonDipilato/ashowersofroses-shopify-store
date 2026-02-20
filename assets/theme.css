@@ -8,6 +8,10 @@ body {
   padding: 0;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   color: var(--color-ink);
   background: radial-gradient(circle at 14% -10%, rgba(183, 157, 97, 0.08), transparent 42%),
@@ -65,6 +69,12 @@ textarea,
 select {
   color: inherit;
   font: inherit;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px;
 }
 
 .skip-link {
@@ -154,6 +164,7 @@ select {
   transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, color 200ms ease,
     background 200ms ease;
   cursor: pointer;
+  min-height: 44px;
 }
 
 .btn:hover {
@@ -243,6 +254,7 @@ select {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
   text-align: center;
   padding: 0.68rem 0;
   font-size: 0.83rem;
@@ -272,6 +284,7 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .header-logo {
@@ -320,6 +333,9 @@ select {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .header-utility-link {
@@ -332,8 +348,9 @@ select {
   padding: 0.42rem 0.7rem;
   text-decoration: none;
   font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  min-height: 44px;
 }
 
 .mobile-menu {
@@ -348,6 +365,9 @@ select {
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--color-botanical) 72%, #2e3425);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .mobile-menu summary::-webkit-details-marker {
@@ -381,12 +401,14 @@ select {
 
 .nav-list a {
   display: inline-flex;
+  align-items: center;
   padding: 0.45rem 0.72rem;
   border-radius: var(--radius-pill);
   border: 1px solid color-mix(in srgb, var(--color-gold) 22%, #d4c7a2);
   text-decoration: none;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
+  min-height: 44px;
 }
 
 .desktop-nav {
@@ -414,15 +436,40 @@ select {
 .hero-gift-finder__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, rgba(20, 25, 21, 0.62), rgba(18, 14, 11, 0.42));
+  background: linear-gradient(112deg, rgba(14, 17, 14, 0.78), rgba(36, 17, 24, 0.56));
 }
 
 .hero-gift-finder__content {
   position: relative;
   color: color-mix(in srgb, var(--color-ivory) 92%, #ffffff);
-  padding-block: clamp(4.2rem, 11vw, 8.8rem);
+  padding-block: clamp(3.2rem, 11vw, 8.8rem);
   display: grid;
   gap: 1.6rem;
+}
+
+.hero-gift-finder__copy {
+  max-width: 60ch;
+  padding: clamp(1rem, 2.4vw, 1.6rem);
+  border-radius: 14px;
+  border: 1px solid rgba(242, 223, 179, 0.35);
+  background:
+    linear-gradient(140deg, rgba(28, 23, 19, 0.62), rgba(28, 14, 18, 0.38)),
+    rgba(18, 14, 12, 0.42);
+  box-shadow: 0 18px 36px rgba(12, 10, 9, 0.32);
+  backdrop-filter: blur(2px);
+}
+
+.hero-gift-finder__content .section-heading,
+.hero-gift-finder__content .section-subhead {
+  text-shadow: 0 2px 8px rgba(10, 8, 7, 0.35);
+}
+
+.hero-gift-finder__content .section-kicker {
+  color: color-mix(in srgb, var(--color-gold) 68%, #f1e2bf);
+}
+
+.hero-gift-finder__content .section-kicker::before {
+  background: color-mix(in srgb, var(--color-gold) 82%, #efdcb1);
 }
 
 .hero-gift-finder__content .section-subhead {
@@ -775,6 +822,10 @@ select {
   color: color-mix(in srgb, var(--color-muted) 75%, #7b7369);
 }
 
+.collection-toolbar__sort {
+  width: 100%;
+}
+
 .empty-state {
   border: 1px solid color-mix(in srgb, var(--color-gold) 24%, #d7cca7);
   background: color-mix(in srgb, var(--color-surface) 80%, #ffffff);
@@ -840,6 +891,9 @@ select {
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--color-gold) 20%, #dacfab);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
 }
 
 .product-details {
@@ -937,15 +991,15 @@ select {
 
 .sticky-atc {
   position: sticky;
-  bottom: 0.6rem;
+  bottom: max(0.6rem, env(safe-area-inset-bottom));
   z-index: 6;
-  border-radius: var(--radius-pill);
+  border-radius: 16px;
   border: 1px solid color-mix(in srgb, var(--color-gold) 30%, #d2c39e);
   background: color-mix(in srgb, var(--color-paper) 90%, rgba(255, 255, 255, 0.92));
   backdrop-filter: blur(8px);
   padding: 0.5rem;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   align-items: center;
   gap: 0.7rem;
 }
@@ -966,6 +1020,16 @@ select {
 .sticky-atc__title {
   margin: 0;
   font-size: 0.9rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.sticky-atc form {
+  width: 100%;
+}
+
+.sticky-atc .btn {
+  width: 100%;
 }
 
 .recommendations {
@@ -1040,6 +1104,18 @@ select {
   text-decoration: none;
 }
 
+@media (min-width: 520px) {
+  .sticky-atc {
+    grid-template-columns: 1fr auto;
+    border-radius: var(--radius-pill);
+  }
+
+  .sticky-atc form,
+  .sticky-atc .btn {
+    width: auto;
+  }
+}
+
 @media (min-width: 640px) {
   .gift-finder__grid {
     grid-template-columns: 1fr 1fr;
@@ -1068,12 +1144,25 @@ select {
   .liturgical-band__layout {
     grid-template-columns: 1fr auto;
   }
+
+  .collection-toolbar__sort {
+    width: auto;
+    min-width: 220px;
+  }
 }
 
 @media (min-width: 900px) {
+  .header-brand {
+    flex-wrap: nowrap;
+  }
+
   .header-shell {
     gap: 1.25rem;
     padding-block: 1.3rem;
+  }
+
+  .header-utility-link {
+    letter-spacing: 0.1em;
   }
 
   .mobile-menu {

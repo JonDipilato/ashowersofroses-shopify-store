@@ -11,7 +11,7 @@
 
       <div class="collection-toolbar">
         <p class="collection-toolbar__count">{{ collection.products_count }} items</p>
-        <form method="get" action="{{ collection.url }}" class="form-field" style="min-width: 200px;">
+        <form method="get" action="{{ collection.url }}" class="form-field collection-toolbar__sort">
           <label for="SortBy-{{ section.id }}">{{ 'collections.sorting.title' | t }}</label>
           <select id="SortBy-{{ section.id }}" name="sort_by" onchange="this.form.submit()">
             {% for option in collection.sort_options %}
