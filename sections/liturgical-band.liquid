@@ -1,0 +1,60 @@
+{% if section.settings.heading != blank %}
+  <section class="liturgical-band section-shell">
+    <div class="page-width liturgical-band__layout">
+      <div>
+        {% if section.settings.season != blank %}
+          <p class="liturgical-band__season">{{ section.settings.season }}</p>
+        {% endif %}
+        <h2 class="liturgical-band__heading">{{ section.settings.heading }}</h2>
+        {% if section.settings.text != blank %}
+          <p class="liturgical-band__text">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a class="btn btn-primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Liturgical band",
+  "settings": [
+    {
+      "type": "text",
+      "id": "season",
+      "label": "Season",
+      "default": "Current observance"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A curated edit for this liturgical season"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Highlight devotionals, home blessings, and keepsakes that align with the Church calendar."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop the seasonal edit"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Liturgical band"
+    }
+  ]
+}
+{% endschema %}

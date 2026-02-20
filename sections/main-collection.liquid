@@ -1,0 +1,84 @@
+{% paginate collection.products by section.settings.products_per_page %}
+  <section class="section-shell">
+    <div class="page-width collection-layout">
+      <header class="collection-header">
+        <p class="section-kicker">Collection</p>
+        <h1 class="section-heading">{{ collection.title }}</h1>
+        {% if collection.description != blank %}
+          <div class="rte section-subhead">{{ collection.description }}</div>
+        {% endif %}
+      </header>
+
+      <div class="collection-toolbar">
+        <p class="collection-toolbar__count">{{ collection.products_count }} items</p>
+        <form method="get" action="{{ collection.url }}" class="form-field" style="min-width: 200px;">
+          <label for="SortBy-{{ section.id }}">{{ 'collections.sorting.title' | t }}</label>
+          <select id="SortBy-{{ section.id }}" name="sort_by" onchange="this.form.submit()">
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}"{% if option.value == collection.sort_by %} selected{% endif %}>{{ option.name }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      </div>
+
+      {% if collection.products_count > 0 %}
+        <div class="product-grid">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product, show_vendor: section.settings.show_vendor %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-state">
+          <p>This collection is currently empty.</p>
+        </div>
+      {% endif %}
+
+      {% if paginate.pages > 1 %}
+        <nav class="pagination" role="navigation" aria-label="Pagination">
+          <ul>
+            {% if paginate.previous %}
+              <li><a href="{{ paginate.previous.url }}">Previous</a></li>
+            {% endif %}
+
+            {% for part in paginate.parts %}
+              {% if part.is_link %}
+                <li><a href="{{ part.url }}">{{ part.title }}</a></li>
+              {% else %}
+                <li>
+                  <span{% if part.title == paginate.current_page %} class="is-active"{% endif %}>{{ part.title }}</span>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% if paginate.next %}
+              <li><a href="{{ paginate.next.url }}">Next</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      {% endif %}
+    </div>
+  </section>
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

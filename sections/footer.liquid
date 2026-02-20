@@ -1,0 +1,62 @@
+{% liquid
+  assign footer_menu = linklists[section.settings.footer_menu]
+  assign support_menu = linklists[section.settings.support_menu]
+%}
+
+<footer class="site-footer">
+  <div class="page-width footer-layout">
+    <div class="footer-brand">
+      <strong>{{ shop.name }}</strong>
+      {% if section.settings.tagline != blank %}
+        <p>{{ section.settings.tagline }}</p>
+      {% endif %}
+      <p class="footer-meta">{{ shop.address.country }}</p>
+    </div>
+
+    {% if footer_menu.links.size > 0 %}
+      <nav class="footer-nav" aria-label="Footer menu">
+        <p class="nav-group__label">Shop</p>
+        <ul>
+          {% for link in footer_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+
+    {% if support_menu.links.size > 0 %}
+      <nav class="footer-nav" aria-label="Support menu">
+        <p class="nav-group__label">Care</p>
+        <ul>
+          {% for link in support_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "A reverent collection for baptisms, confirmations, weddings, and every grace-filled occasion."
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer menu"
+    },
+    {
+      "type": "link_list",
+      "id": "support_menu",
+      "label": "Support menu"
+    }
+  ]
+}
+{% endschema %}

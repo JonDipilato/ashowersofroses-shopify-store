@@ -1,0 +1,74 @@
+{% if section.blocks.size > 0 %}
+  <section class="section-shell">
+    <div class="page-width">
+      {% if section.settings.kicker != blank %}
+        <p class="section-kicker">{{ section.settings.kicker }}</p>
+      {% endif %}
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+
+      <div class="testimonial-grid" style="margin-top: 1.5rem;">
+        {% for block in section.blocks %}
+          <article class="testimonial-card" {{ block.shopify_attributes }}>
+            <blockquote>“{{ block.settings.quote }}”</blockquote>
+            <div class="testimonial-card__meta">
+              {% if block.settings.author != blank %}
+                <span>{{ block.settings.author }}</span>
+              {% endif %}
+              {% if block.settings.context != blank %}
+                <span>{{ block.settings.context }}</span>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Customer reflections"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What families are saying"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author"
+        },
+        {
+          "type": "text",
+          "id": "context",
+          "label": "Occasion"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "products_per_page": 16,
+        "show_vendor": false
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "item1": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "heading": "Gift-ready",
+            "text": "Presentation options available at checkout."
+          }
+        },
+        "item2": {
+          "type": "item",
+          "settings": {
+            "icon": "seal",
+            "heading": "Curated quality",
+            "text": "Premium materials and devotional craftsmanship."
+          }
+        },
+        "item3": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "heading": "Secure order",
+            "text": "Protected checkout and clear order communication."
+          }
+        }
+      },
+      "block_order": ["item1", "item2", "item3"],
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Receive liturgical edits and gifting guidance",
+        "button_label": "Join"
+      }
+    }
+  },
+  "order": ["main", "trust", "newsletter"]
+}

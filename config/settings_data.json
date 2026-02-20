@@ -1,0 +1,38 @@
+{
+  "current": {
+    "color_ivory": "#F7F1E7",
+    "color_paper": "#FDF9F2",
+    "color_surface": "#FBF5EA",
+    "color_gold": "#B79D61",
+    "color_rose": "#8A2034",
+    "color_botanical": "#3F4A36",
+    "color_ink": "#201A17",
+    "color_muted": "#706962",
+    "display_font_family": "cormorant_garamond",
+    "body_font_family": "eb_garamond",
+    "layout_width": 1240,
+    "space_base": 18,
+    "ornament_intensity": 45,
+    "grain_opacity": 8,
+    "gild_intensity": 70
+  },
+  "presets": {
+    "Default": {
+      "color_ivory": "#F7F1E7",
+      "color_paper": "#FDF9F2",
+      "color_surface": "#FBF5EA",
+      "color_gold": "#B79D61",
+      "color_rose": "#8A2034",
+      "color_botanical": "#3F4A36",
+      "color_ink": "#201A17",
+      "color_muted": "#706962",
+      "display_font_family": "cormorant_garamond",
+      "body_font_family": "eb_garamond",
+      "layout_width": 1240,
+      "space_base": 18,
+      "ornament_intensity": 45,
+      "grain_opacity": 8,
+      "gild_intensity": 70
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {}
+    },
+    "guides": {
+      "type": "gift-guides",
+      "settings": {
+        "kicker": "Guided shopping",
+        "heading": "Find your next destination",
+        "subheading": "Use curated guides to return to the right sacramental collection."
+      }
+    }
+  },
+  "order": ["main", "guides"]
+}

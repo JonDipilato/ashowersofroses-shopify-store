@@ -1,0 +1,21 @@
+{% if product and product != blank %}
+  <article class="product-card card-surface">
+    <a class="product-card__media" href="{{ product.url }}">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 25vw, (min-width: 600px) 50vw, 100vw', widths: '220,320,480,640,720', alt: product.featured_image.alt | escape }}
+      {% endif %}
+    </a>
+    <div class="product-card__content">
+      {% if show_vendor and product.vendor != blank %}
+        <p class="section-kicker">{{ product.vendor }}</p>
+      {% endif %}
+      <h3 class="product-card__title">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </h3>
+      {% render 'price', product: product %}
+      {% if product.metafields.custom.gift_note != blank %}
+        <p class="product-card__note">{{ product.metafields.custom.gift_note | metafield_tag }}</p>
+      {% endif %}
+    </div>
+  </article>
+{% endif %}

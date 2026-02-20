@@ -1,0 +1,64 @@
+<section class="section-shell">
+  <div class="page-width contact-layout">
+    <div class="page-template">
+      <p class="section-kicker">Contact</p>
+      <h1 class="page-template__title">{{ page.title }}</h1>
+      {% if page.content != blank %}
+        <div class="rte">{{ page.content }}</div>
+      {% endif %}
+      {% if shop.email != blank %}
+        <p><strong>Email:</strong> <a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>
+      {% endif %}
+      {% if shop.phone != blank %}
+        <p><strong>Phone:</strong> <a href="tel:{{ shop.phone | replace: ' ', '' }}">{{ shop.phone }}</a></p>
+      {% endif %}
+    </div>
+
+    <div class="contact-form card-surface">
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <p class="form-status form-status--success">{{ 'contact.success' | t }}</p>
+        {% endif %}
+
+        {% if form.errors %}
+          <p class="form-status form-status--error">{{ form.errors | default_errors }}</p>
+        {% endif %}
+
+        <div class="form-field">
+          <label for="ContactName-{{ section.id }}">{{ 'contact.name' | t }}</label>
+          <input id="ContactName-{{ section.id }}" type="text" name="contact[name]" autocomplete="name" value="{% if form.name %}{{ form.name }}{% endif %}">
+        </div>
+
+        <div class="form-field" style="margin-top: 0.8rem;">
+          <label for="ContactEmail-{{ section.id }}">{{ 'contact.email' | t }}</label>
+          <input
+            id="ContactEmail-{{ section.id }}"
+            type="email"
+            name="contact[email]"
+            autocomplete="email"
+            required
+            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+          >
+        </div>
+
+        <div class="form-field" style="margin-top: 0.8rem;">
+          <label for="ContactPhone-{{ section.id }}">{{ 'contact.phone' | t }}</label>
+          <input id="ContactPhone-{{ section.id }}" type="tel" name="contact[phone]" autocomplete="tel" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+        </div>
+
+        <div class="form-field" style="margin-top: 0.8rem;">
+          <label for="ContactMessage-{{ section.id }}">{{ 'contact.message' | t }}</label>
+          <textarea id="ContactMessage-{{ section.id }}" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </div>
+
+        <button class="btn btn-primary" style="margin-top: 1rem;" type="submit">{{ 'contact.send' | t }}</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main contact"
+}
+{% endschema %}

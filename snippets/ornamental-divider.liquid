@@ -1,0 +1,21 @@
+{% liquid
+  assign divider_style = style | default: 'arabesque'
+%}
+<div class="ornamental-divider" aria-hidden="true">
+  {% case divider_style %}
+    {% when 'line' %}
+      <svg width="142" height="14" viewBox="0 0 142 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 7H56L71 1L86 7H141" stroke="currentColor" stroke-width="1.2" />
+      </svg>
+    {% when 'botanical' %}
+      <svg width="164" height="24" viewBox="0 0 164 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 12H60C70 12 74 2 82 2C90 2 94 12 104 12H162" stroke="currentColor" stroke-width="1.2" />
+        <path d="M74 22C74 18 77 14 82 14C87 14 90 18 90 22" stroke="currentColor" stroke-width="1.2" />
+      </svg>
+    {% else %}
+      <svg width="172" height="24" viewBox="0 0 172 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 12H66C74 12 78 4 86 4C94 4 98 12 106 12H170" stroke="currentColor" stroke-width="1.2" />
+        <circle cx="86" cy="12" r="4.4" stroke="currentColor" stroke-width="1.2" />
+      </svg>
+  {% endcase %}
+</div>

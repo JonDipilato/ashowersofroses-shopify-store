@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "divider_style": "arabesque"
+      }
+    },
+    "story": {
+      "type": "editorial-story",
+      "settings": {
+        "kicker": "Our curation",
+        "heading": "How A Shower of Roses curates gifts",
+        "body": "<p>Our team sources pieces that combine theological richness with exceptional craftsmanship, then presents them in a way worthy of sacramental celebrations.</p>",
+        "divider_style": "line",
+        "cta_label": "Shop curated gifts"
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "item1": {
+          "type": "item",
+          "settings": {
+            "icon": "seal",
+            "heading": "Curated quality",
+            "text": "Every piece is selected for reverent beauty and lasting value."
+          }
+        },
+        "item2": {
+          "type": "item",
+          "settings": {
+            "icon": "cross",
+            "heading": "Catholic focus",
+            "text": "Our assortment is organized around sacramental and devotional life."
+          }
+        },
+        "item3": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "heading": "Gift-ready",
+            "text": "Refined wrapping options help your gift arrive celebration-ready."
+          }
+        }
+      },
+      "block_order": ["item1", "item2", "item3"],
+      "settings": {}
+    }
+  },
+  "order": ["main", "story", "trust"]
+}

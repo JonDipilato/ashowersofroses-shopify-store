@@ -1,0 +1,11 @@
+{% liquid
+  assign target = product.selected_or_first_available_variant
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price
+%}
+<div class="price" data-live-price-wrap>
+  <span data-live-price>{{ price | money }}</span>
+  <s data-live-compare{% if compare_at_price <= price or compare_at_price == blank %} hidden{% endif %}>
+    {{ compare_at_price | money }}
+  </s>
+</div>

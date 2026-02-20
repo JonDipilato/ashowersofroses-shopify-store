@@ -1,0 +1,117 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-gift-finder",
+      "settings": {
+        "kicker": "Cathedral Luxe",
+        "heading": "Sacred gifts for moments that shape a lifetime",
+        "subheading": "Discover thoughtfully chosen Catholic gifts for baptisms, confirmations, weddings, ordinations, and daily devotion.",
+        "divider_style": "arabesque",
+        "overlay_opacity": 45,
+        "primary_label": "Shop all gifts",
+        "secondary_label": "Read our story"
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "trust_item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "heading": "Gift-ready presentation",
+            "text": "Elegant wrapping and enclosure options for sacramental milestones."
+          }
+        },
+        "trust_item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "seal",
+            "heading": "Curated quality",
+            "text": "Pieces selected for devotion, beauty, and enduring craftsmanship."
+          }
+        },
+        "trust_item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "cross",
+            "heading": "Sacramental focus",
+            "text": "Collections are arranged around occasions and sacraments for easy guidance."
+          }
+        },
+        "trust_item_4": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "heading": "Secure checkout",
+            "text": "Protected payment and clear fulfillment communication."
+          }
+        }
+      },
+      "block_order": ["trust_item_1", "trust_item_2", "trust_item_3", "trust_item_4"],
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "kicker": "Handpicked",
+        "heading": "Featured for this season",
+        "subheading": "A refined selection prepared for meaningful giving.",
+        "product_limit": 4,
+        "show_vendor": false
+      }
+    },
+    "sacraments": {
+      "type": "sacrament-collections",
+      "settings": {
+        "kicker": "Sacramental path",
+        "heading": "Shop by sacrament",
+        "subheading": "Guide families and godparents to gifts that honor each sacrament with care."
+      }
+    },
+    "story": {
+      "type": "editorial-story",
+      "settings": {
+        "kicker": "Our curation",
+        "heading": "A boutique approach to Catholic gifting",
+        "body": "<p>Each piece is selected for beauty, craftsmanship, and spiritual depth so your gift feels worthy of the moment.</p>",
+        "divider_style": "arabesque",
+        "cta_label": "Meet the atelier"
+      }
+    },
+    "liturgical": {
+      "type": "liturgical-band",
+      "settings": {
+        "season": "Current observance",
+        "heading": "A curated edit for this liturgical season",
+        "text": "Highlight devotionals, home blessings, and keepsakes that align with the Church calendar.",
+        "button_label": "Shop the seasonal edit"
+      }
+    },
+    "guides": {
+      "type": "gift-guides",
+      "settings": {
+        "kicker": "Guided shopping",
+        "heading": "Gift guides by relationship and moment",
+        "subheading": "Build intentional gifts for godchildren, catechumens, newlyweds, and devoted hosts."
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "kicker": "Customer reflections",
+        "heading": "What families are saying"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "kicker": "Notes from the atelier",
+        "heading": "Receive liturgical edits and gifting guidance",
+        "text": "Occasional emails with feast-day curation, sacrament gift ideas, and newly arrived keepsakes.",
+        "button_label": "Join"
+      }
+    }
+  },
+  "order": ["hero", "trust", "featured", "sacraments", "story", "liturgical", "guides", "testimonials", "newsletter"]
+}

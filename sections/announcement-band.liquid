@@ -1,0 +1,50 @@
+{% if section.settings.show_band and section.settings.message != blank %}
+  <aside class="announcement-band" role="status">
+    <div class="page-width announcement-band__inner">
+      {% if section.settings.season != blank %}
+        <span>{{ section.settings.season }}</span>
+      {% endif %}
+      <span>{{ section.settings.message }}</span>
+      {% if section.settings.link_label != blank and section.settings.link_url != blank %}
+        <a class="announcement-band__link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}</a>
+      {% endif %}
+    </div>
+  </aside>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Seasonal band",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_band",
+      "label": "Show band",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "season",
+      "label": "Liturgical season",
+      "default": "Ordinary Time"
+    },
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Message",
+      "default": "Gifts prepared prayerfully for every sacramental milestone"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Explore collections"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+{% liquid
+  assign occasions_menu = linklists[section.settings.occasions_menu]
+  assign sacrament_menu = linklists[section.settings.sacraments_menu]
+%}
+
+<section class="hero-gift-finder">
+  {% if section.settings.background_image != blank %}
+    <div class="hero-gift-finder__media" aria-hidden="true">
+      {{ section.settings.background_image | image_url: width: 2200 | image_tag: widths: '900,1200,1600,2200', sizes: '100vw', loading: 'eager' }}
+      <div
+        class="hero-gift-finder__overlay"
+        style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"
+      ></div>
+    </div>
+  {% endif %}
+
+  <div class="page-width hero-gift-finder__content">
+    <div>
+      {% if section.settings.kicker != blank %}
+        <p class="section-kicker">{{ section.settings.kicker }}</p>
+      {% endif %}
+      <h1 class="section-heading">{{ section.settings.heading }}</h1>
+      {% if section.settings.subheading != blank %}
+        <p class="section-subhead">{{ section.settings.subheading }}</p>
+      {% endif %}
+      {% if section.settings.divider_style != 'none' %}
+        {% render 'ornamental-divider', style: section.settings.divider_style %}
+      {% endif %}
+      <div class="hero-gift-finder__cta">
+        {% if section.settings.primary_label != blank and section.settings.primary_link != blank %}
+          <a class="btn btn-primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>
+        {% endif %}
+        {% if section.settings.secondary_label != blank and section.settings.secondary_link != blank %}
+          <a class="btn btn-secondary" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <form class="gift-finder" action="{{ routes.root_url }}" method="get" data-gift-finder>
+      <p class="section-kicker">Gift Finder</p>
+      <div class="gift-finder__grid">
+        <div class="form-field">
+          <label for="FinderOccasion-{{ section.id }}">Occasion</label>
+          <select id="FinderOccasion-{{ section.id }}" data-finder-occasion>
+            <option value="">Choose an occasion</option>
+            {% for link in occasions_menu.links %}
+              <option value="{{ link.url }}">{{ link.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="FinderSacrament-{{ section.id }}">Sacrament</label>
+          <select id="FinderSacrament-{{ section.id }}" data-finder-sacrament>
+            <option value="">Choose a sacrament</option>
+            {% for link in sacrament_menu.links %}
+              <option value="{{ link.url }}">{{ link.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="gift-finder__action">
+        <p class="field-help">Select either field to jump straight into curated gifting paths.</p>
+        <button class="btn btn-primary" type="submit">Find gifts</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero gift finder",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Cathedral Luxe"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sacred gifts for moments that shape a lifetime"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover thoughtfully chosen Catholic gifts for baptisms, confirmations, weddings, ordinations, and daily devotion."
+    },
+    {
+      "type": "select",
+      "id": "divider_style",
+      "label": "Ornamental divider",
+      "default": "arabesque",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "arabesque",
+          "label": "Arabesque"
+        },
+        {
+          "value": "line",
+          "label": "Line"
+        },
+        {
+          "value": "botanical",
+          "label": "Botanical"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "link_list",
+      "id": "occasions_menu",
+      "label": "Occasions menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "sacraments_menu",
+      "label": "Sacraments menu"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop all gifts"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Read our story"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero gift finder"
+    }
+  ]
+}
+{% endschema %}

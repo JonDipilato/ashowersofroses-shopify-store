@@ -1,0 +1,139 @@
+{% liquid
+  assign occasions_menu = linklists[section.settings.occasions_menu]
+  assign sacrament_menu = linklists[section.settings.sacraments_menu]
+  assign utility_menu = linklists[section.settings.utility_menu]
+%}
+
+<header class="site-header">
+  <div class="page-width header-shell">
+    <div class="header-brand">
+      <a class="header-logo" href="{{ routes.root_url }}">
+        {% if settings.logo != blank %}
+          {{ settings.logo | image_url: width: section.settings.logo_width | image_tag: widths: '120,180,240,320', loading: 'eager', class: 'header-logo__image', alt: shop.name }}
+        {% else %}
+          <span class="header-logo__mark" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 1V17" stroke="currentColor" stroke-width="1.1" />
+              <path d="M1 9H17" stroke="currentColor" stroke-width="1.1" />
+              <path d="M3 3L15 15" stroke="currentColor" stroke-width="1.1" />
+              <path d="M15 3L3 15" stroke="currentColor" stroke-width="1.1" />
+            </svg>
+          </span>
+          <span class="header-logo__text">
+            <strong>{{ shop.name }}</strong>
+            <span>Curated Catholic Gifts</span>
+          </span>
+        {% endif %}
+      </a>
+
+      <div class="header-utilities">
+        <a class="header-utility-link" href="{{ routes.search_url }}">{{ 'header.search' | t }}</a>
+        {% if shop.customer_accounts_enabled %}
+          <a class="header-utility-link" href="{{ routes.account_url }}">{{ 'header.account' | t }}</a>
+        {% endif %}
+        <a class="header-utility-link" href="{{ routes.cart_url }}">
+          {{ 'header.cart' | t }}
+          {% if cart.item_count > 0 %}
+            ({{ cart.item_count }})
+          {% endif %}
+        </a>
+      </div>
+    </div>
+
+    <nav class="desktop-nav" aria-label="Primary">
+      {% if occasions_menu.links.size > 0 %}
+        <div class="nav-group">
+          <p class="nav-group__label">Shop by occasion</p>
+          <ul class="nav-list">
+            {% for link in occasions_menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if sacrament_menu.links.size > 0 %}
+        <div class="nav-group">
+          <p class="nav-group__label">Shop by sacrament</p>
+          <ul class="nav-list">
+            {% for link in sacrament_menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </nav>
+
+    <details class="mobile-menu">
+      <summary>{{ 'header.menu' | t }}</summary>
+      <div class="mobile-menu__panel">
+        {% if occasions_menu.links.size > 0 %}
+          <div class="nav-group">
+            <p class="nav-group__label">Shop by occasion</p>
+            <ul class="nav-list">
+              {% for link in occasions_menu.links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if sacrament_menu.links.size > 0 %}
+          <div class="nav-group">
+            <p class="nav-group__label">Shop by sacrament</p>
+            <ul class="nav-list">
+              {% for link in sacrament_menu.links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if utility_menu.links.size > 0 %}
+          <div class="nav-group">
+            <p class="nav-group__label">More</p>
+            <ul class="nav-list">
+              {% for link in utility_menu.links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    </details>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 80,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "default": 180
+    },
+    {
+      "type": "link_list",
+      "id": "occasions_menu",
+      "label": "Occasions menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "sacraments_menu",
+      "label": "Sacraments menu"
+    },
+    {
+      "type": "link_list",
+      "id": "utility_menu",
+      "label": "Utility menu"
+    }
+  ]
+}
+{% endschema %}

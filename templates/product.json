@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_vendor": false,
+        "fulfillment_heading": "Shipping and pickup",
+        "shipping_note": "Orders ship quickly with tracking and careful gift-safe packing.",
+        "gift_ready_heading": "Gift-ready finishing",
+        "gift_ready_text": "Add premium wrapping and a handwritten enclosure for sacramental milestones."
+      }
+    },
+    "often_bought": {
+      "type": "product-often-bought",
+      "settings": {
+        "heading": "Often bought together",
+        "products_to_show": 4
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "item1": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "heading": "Gift-ready",
+            "text": "Elegant wrapping and enclosure options available."
+          }
+        },
+        "item2": {
+          "type": "item",
+          "settings": {
+            "icon": "cross",
+            "heading": "Sacramental curation",
+            "text": "Selections chosen for meaningful Catholic gifting."
+          }
+        },
+        "item3": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "heading": "Secure checkout",
+            "text": "Protected transactions and clear follow-up communication."
+          }
+        }
+      },
+      "block_order": ["item1", "item2", "item3"],
+      "settings": {}
+    }
+  },
+  "order": ["main", "often_bought", "trust"]
+}

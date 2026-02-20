@@ -1,0 +1,54 @@
+{
+  "accessibility": {
+    "skip_to_text": "Skip to content"
+  },
+  "general": {
+    "continue_shopping": "Continue shopping",
+    "view_all": "View all",
+    "currency": "USD"
+  },
+  "header": {
+    "search": "Search",
+    "cart": "Cart",
+    "account": "Account",
+    "menu": "Browse"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "choose_option": "Choose an option"
+    }
+  },
+  "collections": {
+    "sorting": {
+      "title": "Sort by",
+      "best_selling": "Best selling",
+      "manual": "Featured",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "created_descending": "Newest arrivals"
+    }
+  },
+  "newsletter": {
+    "label": "Email",
+    "button": "Join",
+    "success": "Thank you for subscribing."
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send message",
+    "success": "Thank you for your note. We will reply soon."
+  },
+  "templates": {
+    "404": {
+      "title": "The page cannot be found",
+      "subtext": "It may have moved during the season."
+    }
+  }
+}

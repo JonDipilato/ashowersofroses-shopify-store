@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-contact",
+      "settings": {}
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "item1": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "heading": "Support with care",
+            "text": "We respond promptly to questions about gifting, shipping, and events."
+          }
+        },
+        "item2": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "heading": "Gift consultation",
+            "text": "Share the occasion and we can help you curate the right present."
+          }
+        },
+        "item3": {
+          "type": "item",
+          "settings": {
+            "icon": "cross",
+            "heading": "Sacramental guidance",
+            "text": "We can point you to collections aligned to each sacrament."
+          }
+        }
+      },
+      "block_order": ["item1", "item2", "item3"],
+      "settings": {}
+    }
+  },
+  "order": ["main", "trust"]
+}

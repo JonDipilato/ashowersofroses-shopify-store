@@ -1,0 +1,82 @@
+<section class="section-shell">
+  <div class="page-width">
+    {% if section.settings.kicker != blank %}
+      <p class="section-kicker">{{ section.settings.kicker }}</p>
+    {% endif %}
+    <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    {% if section.settings.subheading != blank %}
+      <p class="section-subhead">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="guide-grid" style="margin-top: 1.6rem;">
+        {% for block in section.blocks %}
+          {% if block.settings.link != blank %}
+            <a class="gift-guide-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+              <h3 class="gift-guide-card__title">{{ block.settings.title }}</h3>
+              {% if block.settings.text != blank %}
+                <p class="gift-guide-card__text">{{ block.settings.text }}</p>
+              {% endif %}
+              <span class="gift-guide-card__link">Open guide</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gift guides",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Guided shopping"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Gift guides by relationship and moment"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Build intentional gifts for godchildren, catechumens, newlyweds, and devoted hosts."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "guide",
+      "name": "Guide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Gift guides"
+    }
+  ]
+}
+{% endschema %}

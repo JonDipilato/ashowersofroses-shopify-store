@@ -1,0 +1,187 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_media = current_variant.featured_image | default: product.featured_image
+  assign story_metafield = product.metafields.custom.story_excerpt
+  assign product_story = blank
+
+  if story_metafield != blank
+    assign product_story = story_metafield.value
+  endif
+
+  if product_story == blank
+    assign product_story = product.description | strip_html | truncatewords: 34
+  endif
+%}
+
+<section class="section-shell" data-product-context>
+  <div class="page-width product-layout">
+    <div class="product-media">
+      {% if featured_media %}
+        <div class="product-media__featured">
+          {{ featured_media | image_url: width: 1500 | image_tag: widths: '480,720,960,1200,1500', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'eager', data-featured-image: true }}
+        </div>
+      {% endif %}
+
+      {% if product.images.size > 1 %}
+        <div class="product-media__thumbs">
+          {% for image in product.images %}
+            <button
+              type="button"
+              class="product-media__thumb"
+              data-media-thumb
+              data-src="{{ image | image_url: width: 1500 }}"
+              data-alt="{{ image.alt | escape }}"
+              aria-current="{% if featured_media == image %}true{% else %}false{% endif %}"
+            >
+              {{ image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '120,160,200', sizes: '72px' }}
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="product-details">
+      {% if section.settings.show_vendor and product.vendor != blank %}
+        <p class="product-details__vendor">{{ product.vendor }}</p>
+      {% endif %}
+      <h1 class="product-details__title">{{ product.title }}</h1>
+      {% render 'price', product: product %}
+
+      {% if product_story != blank %}
+        <p class="product-details__story">{{ product_story }}</p>
+      {% endif %}
+
+      <aside class="info-panel">
+        <h3>{{ section.settings.fulfillment_heading }}</h3>
+        <ul>
+          {% if section.settings.shipping_note != blank %}
+            <li>{{ section.settings.shipping_note }}</li>
+          {% endif %}
+
+          {% if shop.shipping_policy.body != blank %}
+            <li><a href="{{ shop.shipping_policy.url }}">View shipping policy</a></li>
+          {% endif %}
+
+          {% assign pickup_availability = current_variant.store_availabilities %}
+          {% if pickup_availability.size > 0 %}
+            {% assign first_location = pickup_availability.first %}
+            <li>
+              Pickup {% if first_location.available %}available{% else %}unavailable{% endif %} at
+              {{ first_location.location.name }}
+            </li>
+          {% endif %}
+        </ul>
+      </aside>
+
+      {% form 'product', product, class: 'product-form', id: 'ProductForm-' | append: section.id %}
+        {% unless product.has_only_default_variant %}
+          <div class="variant-picker">
+            <div class="form-field">
+              <label for="VariantSelect-{{ section.id }}">{{ 'products.product.choose_option' | t }}</label>
+              <select id="VariantSelect-{{ section.id }}" name="id" data-main-variant-select>
+                {% for variant in product.variants %}
+                  <option
+                    value="{{ variant.id }}"
+                    data-price="{{ variant.price | money }}"
+                    data-compare="{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money }}{% endif %}"
+                    data-available="{{ variant.available }}"
+                    {% if variant.id == current_variant.id %}selected{% endif %}
+                  >
+                    {{ variant.title }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        {% else %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+        {% endunless %}
+
+        <div class="form-field quantity-control">
+          <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+          <input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1">
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-wide"
+          data-cart-submit
+          {% unless current_variant.available %}disabled{% endunless %}
+        >
+          {% if current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </button>
+      {% endform %}
+
+      {% if section.settings.gift_ready_text != blank %}
+        <p class="gift-ready-panel">
+          <strong>{{ section.settings.gift_ready_heading }}</strong><br>
+          {{ section.settings.gift_ready_text }}
+        </p>
+      {% endif %}
+
+      <div class="product-description">
+        <details open>
+          <summary>Product story</summary>
+          <div class="rte">{{ product.description }}</div>
+        </details>
+      </div>
+
+      <div class="sticky-atc">
+        <div class="sticky-atc__meta">
+          <p class="sticky-atc__label">Ready to gift</p>
+          <p class="sticky-atc__title">{{ product.title }}</p>
+          {% render 'price', product: product %}
+        </div>
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ current_variant.id }}" data-sticky-variant-input>
+          <input type="hidden" name="quantity" value="1">
+          <button class="btn btn-primary" type="submit" data-cart-submit{% unless current_variant.available %} disabled{% endunless %}>
+            {{ 'products.product.add_to_cart' | t }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "fulfillment_heading",
+      "label": "Fulfillment heading",
+      "default": "Shipping and pickup"
+    },
+    {
+      "type": "text",
+      "id": "shipping_note",
+      "label": "Shipping note",
+      "default": "Orders ship quickly with tracking and careful gift-safe packing."
+    },
+    {
+      "type": "text",
+      "id": "gift_ready_heading",
+      "label": "Gift-ready heading",
+      "default": "Gift-ready finishing"
+    },
+    {
+      "type": "textarea",
+      "id": "gift_ready_text",
+      "label": "Gift-ready text",
+      "default": "Add premium wrapping and a handwritten enclosure for sacramental milestones."
+    }
+  ]
+}
+{% endschema %}

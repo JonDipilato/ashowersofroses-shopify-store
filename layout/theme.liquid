@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_ink }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 96, height: 96 }}">
+    {%- endif -%}
+
+    {% capture display_font_query %}
+      {% case settings.display_font_family %}
+        {% when 'cinzel' %}
+          Cinzel:wght@400;500;600;700
+        {% when 'bodoni_moda' %}
+          Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700
+        {% else %}
+          Cormorant+Garamond:wght@400;500;600;700
+      {% endcase %}
+    {% endcapture %}
+    {% assign display_font_query = display_font_query | strip %}
+
+    {% capture body_font_query %}
+      {% case settings.body_font_family %}
+        {% when 'crimson_text' %}
+          Crimson+Text:wght@400;600;700
+        {% when 'libre_baskerville' %}
+          Libre+Baskerville:ital,wght@0,400;0,700;1,400
+        {% else %}
+          EB+Garamond:ital,wght@0,400;0,500;0,600;1,400
+      {% endcase %}
+    {% endcapture %}
+    {% assign body_font_query = body_font_query | strip %}
+
+    {% assign display_font_stack = "'Cormorant Garamond', serif" %}
+    {% case settings.display_font_family %}
+      {% when 'cinzel' %}
+        {% assign display_font_stack = "'Cinzel', serif" %}
+      {% when 'bodoni_moda' %}
+        {% assign display_font_stack = "'Bodoni Moda', serif" %}
+    {% endcase %}
+
+    {% assign body_font_stack = "'EB Garamond', serif" %}
+    {% case settings.body_font_family %}
+      {% when 'crimson_text' %}
+        {% assign body_font_stack = "'Crimson Text', serif" %}
+      {% when 'libre_baskerville' %}
+        {% assign body_font_stack = "'Libre Baskerville', serif" %}
+    {% endcase %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family={{ display_font_query }}&family={{ body_font_query }}&display=swap"
+    >
+
+    {{ content_for_header }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <style>
+      :root {
+        --color-ivory: {{ settings.color_ivory }};
+        --color-paper: {{ settings.color_paper }};
+        --color-rose: {{ settings.color_rose }};
+        --color-gold: {{ settings.color_gold }};
+        --color-ink: {{ settings.color_ink }};
+        --color-botanical: {{ settings.color_botanical }};
+        --color-muted: {{ settings.color_muted }};
+        --color-surface: {{ settings.color_surface }};
+        --font-display: {{ display_font_stack }};
+        --font-body: {{ body_font_stack }};
+        --container-width: {{ settings.layout_width }}px;
+        --space-base: {{ settings.space_base }}px;
+        --ornament-intensity: {{ settings.ornament_intensity | divided_by: 100.0 }};
+        --grain-opacity: {{ settings.grain_opacity | divided_by: 100.0 }};
+        --gild-intensity: {{ settings.gild_intensity | divided_by: 100.0 }};
+        --radius-soft: 12px;
+        --radius-pill: 999px;
+        --ring-focus: 0 0 0 3px rgba(138, 32, 52, 0.28);
+      }
+    </style>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </head>
+
+  <body class="template-{{ request.page_type | handle }}">
+    <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_text' | t }}</a>
+
+    <div class="site-grain" aria-hidden="true"></div>
+
+    {% section 'announcement-band' %}
+    {% section 'header' %}
+
+    <main id="MainContent" class="main-content" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+  </body>
+</html>

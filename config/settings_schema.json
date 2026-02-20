@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Brand identity",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Colors and materials",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ivory",
+        "label": "Ivory base",
+        "default": "#F7F1E7"
+      },
+      {
+        "type": "color",
+        "id": "color_paper",
+        "label": "Paper wash",
+        "default": "#FDF9F2"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Card surface",
+        "default": "#FBF5EA"
+      },
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Antique gold",
+        "default": "#B79D61"
+      },
+      {
+        "type": "color",
+        "id": "color_rose",
+        "label": "Deep rose",
+        "default": "#8A2034"
+      },
+      {
+        "type": "color",
+        "id": "color_botanical",
+        "label": "Botanical green",
+        "default": "#3F4A36"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink text",
+        "default": "#201A17"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Muted text",
+        "default": "#706962"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "display_font_family",
+        "label": "Display serif",
+        "default": "cormorant_garamond",
+        "options": [
+          {
+            "value": "cormorant_garamond",
+            "label": "Cormorant Garamond"
+          },
+          {
+            "value": "cinzel",
+            "label": "Cinzel"
+          },
+          {
+            "value": "bodoni_moda",
+            "label": "Bodoni Moda"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "body_font_family",
+        "label": "Body serif",
+        "default": "eb_garamond",
+        "options": [
+          {
+            "value": "eb_garamond",
+            "label": "EB Garamond"
+          },
+          {
+            "value": "crimson_text",
+            "label": "Crimson Text"
+          },
+          {
+            "value": "libre_baskerville",
+            "label": "Libre Baskerville"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Layout and ornaments",
+    "settings": [
+      {
+        "type": "range",
+        "id": "layout_width",
+        "label": "Max page width",
+        "min": 980,
+        "max": 1520,
+        "step": 20,
+        "unit": "px",
+        "default": 1240
+      },
+      {
+        "type": "range",
+        "id": "space_base",
+        "label": "Base spacing unit",
+        "min": 14,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 18
+      },
+      {
+        "type": "range",
+        "id": "ornament_intensity",
+        "label": "Ornament intensity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "default": 45
+      },
+      {
+        "type": "range",
+        "id": "grain_opacity",
+        "label": "Texture grain",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "unit": "%",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "gild_intensity",
+        "label": "Gilt highlight",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "default": 70
+      }
+    ]
+  }
+]
