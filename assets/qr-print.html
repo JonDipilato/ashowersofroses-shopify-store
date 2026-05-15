@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Shower of Roses — Monthly Society QR Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #f0ece4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .print-hint {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #999;
+      text-align: center;
+    }
+
+    /* ─── Card ─── */
+    .card {
+      width: 3.5in;
+      min-height: 5.5in;
+      background: linear-gradient(160deg, #fbf7f0 0%, #f5efe4 100%);
+      border: 1.5px solid rgba(183,157,97,0.5);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5in 0.4in 0.45in;
+      box-shadow:
+        0 2px 8px rgba(138,32,52,0.08),
+        0 16px 48px rgba(138,32,52,0.12),
+        inset 0 0 0 1px rgba(255,255,255,0.6);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Corner ornaments */
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-color: rgba(183,157,97,0.35);
+      border-style: solid;
+    }
+    .card::before {
+      top: 14px; left: 14px;
+      border-width: 1.5px 0 0 1.5px;
+      border-radius: 4px 0 0 0;
+    }
+    .card::after {
+      bottom: 14px; right: 14px;
+      border-width: 0 1.5px 1.5px 0;
+      border-radius: 0 0 4px 0;
+    }
+
+    .card-top { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+
+    .kicker {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #b79d61;
+    }
+
+    .store-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #8a2034;
+      line-height: 1.15;
+      letter-spacing: 0.03em;
+    }
+
+    .divider {
+      width: 2.2rem;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #b79d61, transparent);
+      margin: 0.1rem 0;
+    }
+
+    /* ─── QR Frame ─── */
+    .qr-frame {
+      background: #fbf7f0;
+      border: 1.5px solid rgba(183,157,97,0.55);
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow:
+        0 4px 16px rgba(138,32,52,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .qr-frame img {
+      display: block;
+      width: 200px;
+      height: 200px;
+    }
+
+    /* ─── Middle copy ─── */
+    .card-middle { display: flex; flex-direction: column; align-items: center; gap: 0.55rem; }
+
+    .headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: #1a1210;
+      line-height: 1.25;
+      letter-spacing: 0.02em;
+    }
+
+    .subtext {
+      font-size: 0.8rem;
+      color: #7a6a5e;
+      line-height: 1.55;
+      max-width: 22ch;
+    }
+
+    /* ─── Bottom ─── */
+    .card-bottom { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+
+    .url-line {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: #8a2034;
+      text-transform: lowercase;
+      font-family: 'EB Garamond', serif;
+    }
+
+    .rose-row {
+      font-size: 0.7rem;
+      color: rgba(183,157,97,0.6);
+      letter-spacing: 0.3em;
+    }
+
+    /* ─── Print ─── */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+        display: block;
+        min-height: unset;
+      }
+      .print-hint { display: none; }
+      .card {
+        margin: 0 auto;
+        box-shadow: none;
+        border-color: rgba(183,157,97,0.6);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="print-hint">File → Print (or Ctrl+P) — set paper size to 4×6 or Letter, scale to fit</p>
+
+  <div class="card">
+
+    <div class="card-top">
+      <p class="kicker">Handcrafted with devotion</p>
+      <h1 class="store-name">A Shower<br>of Roses</h1>
+      <div class="divider"></div>
+    </div>
+
+    <div class="qr-frame">
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&color=8A2034&bgcolor=FBF7F0&margin=8&format=png&data=https://ashowersofroses.com/pages/join"
+        alt="Scan to join the Monthly Rose Society"
+        width="200"
+        height="200"
+      >
+    </div>
+
+    <div class="card-middle">
+      <h2 class="headline">Join Our<br>Monthly Society</h2>
+      <p class="subtext">Scan to receive handpicked sacramentals &amp; devotionals delivered each month — curated personally by Patricia.</p>
+    </div>
+
+    <div class="card-bottom">
+      <p class="rose-row">✦ &nbsp; ✦ &nbsp; ✦</p>
+      <p class="url-line">ashowersofroses.com/pages/join</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
