@@ -85,7 +85,11 @@
         "text": "Occasional emails with feast-day curation, sacrament gift ideas, and newly arrived keepsakes.",
         "button_label": "Join"
       }
+    },
+    "ghl_signup": {
+      "type": "ghl-signup",
+      "settings": {}
     }
   },
-  "order": ["hero", "trust", "catalog", "sacraments", "testimonials", "newsletter"]
+  "order": ["hero", "trust", "catalog", "sacraments", "testimonials", "newsletter", "ghl_signup"]
 }

@@ -1,0 +1,140 @@
+<section class="section-shell ghl-signup" id="join">
+  <div class="page-width ghl-signup__inner">
+
+    <div class="ghl-signup__left">
+      <p class="section-kicker">Monthly Rose Society</p>
+      <h2 class="section-heading ghl-signup__title">Join Patricia's<br>Monthly Box</h2>
+      <p class="ghl-signup__body">Patricia personally curates and ships each box from home — handpicked sacramentals, devotionals, and faith gifts. Leave your name and number and she'll reach out personally.</p>
+
+      <ul class="ghl-signup__perks">
+        <li>SMS &amp; email updates on your monthly shipment</li>
+        <li>Early access to limited sacramentals</li>
+        <li>Direct line to Patricia for custom requests</li>
+        <li>No commitment — cancel any time</li>
+      </ul>
+
+      <div class="ghl-packages">
+        <div class="ghl-pkg-row">
+          <span class="ghl-pkg-row__name">The Rose Garden</span>
+          <span class="ghl-pkg-row__price">$35/mo</span>
+        </div>
+        <div class="ghl-pkg-row">
+          <span class="ghl-pkg-row__name">The Sanctuary Box</span>
+          <span class="ghl-pkg-row__price">$65/mo</span>
+        </div>
+        <div class="ghl-pkg-row">
+          <span class="ghl-pkg-row__name">The Bridal Rose</span>
+          <span class="ghl-pkg-row__price">$95/mo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ghl-signup__right">
+      <div class="ghl-signup__form-wrap">
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/JHl1KW43Ovv3cpcn7bYj"
+          style="width:100%;height:668px;border:none;"
+          id="inline-JHl1KW43Ovv3cpcn7bYj"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Form 0"
+          data-height="668"
+          data-layout-iframe-id="inline-JHl1KW43Ovv3cpcn7bYj"
+          data-form-id="JHl1KW43Ovv3cpcn7bYj"
+          title="Join the Monthly Rose Society"
+          loading="lazy"
+        ></iframe>
+        <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ghl-signup {
+    background:
+      radial-gradient(ellipse at 0% 50%, rgba(138,32,52,0.06), transparent 55%),
+      radial-gradient(ellipse at 100% 50%, rgba(183,157,97,0.07), transparent 55%);
+    border-top: 1px solid rgba(183,157,97,0.2);
+  }
+  .ghl-signup__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .ghl-signup__title { margin-top: 0.5rem; }
+  .ghl-signup__body {
+    margin: 1rem 0 1.5rem;
+    font-size: 0.97rem;
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-ink) 78%, transparent);
+    max-width: 40ch;
+  }
+  .ghl-signup__perks {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.9rem;
+  }
+  .ghl-signup__perks li::before {
+    content: "✦ ";
+    color: var(--color-gold);
+    font-size: 0.65rem;
+  }
+  .ghl-packages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .ghl-pkg-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: color-mix(in srgb, var(--color-surface) 80%, #ffffff);
+    border: 1px solid rgba(183,157,97,0.22);
+    border-radius: 10px;
+    padding: 0.65rem 1rem;
+  }
+  .ghl-pkg-row__name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .ghl-pkg-row__price {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-rose);
+  }
+  .ghl-signup__form-wrap {
+    background: color-mix(in srgb, var(--color-surface) 80%, #ffffff);
+    border: 1px solid rgba(183,157,97,0.28);
+    border-radius: var(--radius-soft);
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(138,32,52,0.09);
+  }
+  @media (max-width: 760px) {
+    .ghl-signup__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Monthly Society Signup",
+  "settings": [],
+  "presets": [{ "name": "Monthly Society Signup" }]
+}
+{% endschema %}
