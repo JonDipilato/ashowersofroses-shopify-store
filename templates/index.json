@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -8,9 +17,12 @@
         "subheading": "Discover thoughtfully chosen Catholic gifts for baptisms, confirmations, weddings, ordinations, and daily devotion.",
         "divider_style": "arabesque",
         "overlay_opacity": 45,
+        "occasions_menu": "main-menu",
+        "sacraments_menu": "",
         "primary_label": "Shop all gifts",
         "primary_link": "/collections/all",
-        "secondary_label": "Browse by sacrament"
+        "secondary_label": "Browse by sacrament",
+        "secondary_link": ""
       }
     },
     "trust": {
@@ -49,7 +61,12 @@
           }
         }
       },
-      "block_order": ["trust_item_1", "trust_item_2", "trust_item_3", "trust_item_4"],
+      "block_order": [
+        "trust_item_1",
+        "trust_item_2",
+        "trust_item_3",
+        "trust_item_4"
+      ],
       "settings": {}
     },
     "catalog": {
@@ -77,19 +94,17 @@
         "heading": "What families are saying"
       }
     },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "kicker": "Notes from the atelier",
-        "heading": "Receive liturgical edits and gifting guidance",
-        "text": "Occasional emails with feast-day curation, sacrament gift ideas, and newly arrived keepsakes.",
-        "button_label": "Join"
-      }
-    },
     "ghl_signup": {
       "type": "ghl-signup",
       "settings": {}
     }
   },
-  "order": ["hero", "trust", "catalog", "sacraments", "testimonials", "newsletter", "ghl_signup"]
+  "order": [
+    "hero",
+    "trust",
+    "catalog",
+    "sacraments",
+    "testimonials",
+    "ghl_signup"
+  ]
 }
