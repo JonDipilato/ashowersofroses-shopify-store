@@ -1,0 +1,276 @@
+{% liquid
+  assign canonical_store_url = 'https://ashowersofroses.com'
+  assign store_name = shop.name | default: 'A Shower of Roses'
+  assign store_description = 'A Shower of Roses is a Catholic religious shop offering Catholic religious books, gifts, and church goods online and from its West Boylston, Massachusetts shop.'
+  assign store_phone = '+15087197968'
+  assign store_street = '360 West Boylston Street'
+  assign store_city = 'West Boylston'
+  assign store_region = 'MA'
+  assign store_postal_code = '01583'
+  assign store_country = 'US'
+  assign current_page_url = canonical_url | default: canonical_store_url
+  assign currency_code = cart.currency.iso_code | default: shop.currency
+%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "{{ canonical_store_url }}/#organization",
+  "name": {{ store_name | json }},
+  "url": {{ canonical_store_url | json }},
+  "description": {{ store_description | json }},
+  "telephone": {{ store_phone | json }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ store_street | json }},
+    "addressLocality": {{ store_city | json }},
+    "addressRegion": {{ store_region | json }},
+    "postalCode": {{ store_postal_code | json }},
+    "addressCountry": {{ store_country | json }}
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ canonical_store_url }}/#website",
+  "name": {{ store_name | json }},
+  "url": {{ canonical_store_url | json }},
+  "publisher": {
+    "@id": "{{ canonical_store_url }}/#organization"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ canonical_store_url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "OnlineStore",
+  "@id": "{{ canonical_store_url }}/#online-store",
+  "name": {{ store_name | json }},
+  "url": {{ canonical_store_url | json }},
+  "description": {{ store_description | json }},
+  "isPartOf": {
+    "@id": "{{ canonical_store_url }}/#website"
+  },
+  "parentOrganization": {
+    "@id": "{{ canonical_store_url }}/#organization"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "{{ canonical_store_url }}/#local-business",
+  "name": {{ store_name | json }},
+  "url": {{ canonical_store_url | json }},
+  "description": {{ store_description | json }},
+  "telephone": {{ store_phone | json }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ store_street | json }},
+    "addressLocality": {{ store_city | json }},
+    "addressRegion": {{ store_region | json }},
+    "postalCode": {{ store_postal_code | json }},
+    "addressCountry": {{ store_country | json }}
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": "{{ canonical_store_url }}/#physical-store",
+  "name": {{ store_name | json }},
+  "url": {{ canonical_store_url | json }},
+  "telephone": {{ store_phone | json }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ store_street | json }},
+    "addressLocality": {{ store_city | json }},
+    "addressRegion": {{ store_region | json }},
+    "postalCode": {{ store_postal_code | json }},
+    "addressCountry": {{ store_country | json }}
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ canonical_store_url | json }}
+    }{% if request.page_type == 'product' and product != blank %},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ product.title | json }},
+      "item": {{ current_page_url | json }}
+    }{% elsif request.page_type == 'collection' and collection != blank %},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ collection.title | json }},
+      "item": {{ current_page_url | json }}
+    }{% elsif request.page_type == 'page' and page != blank %},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ page.title | json }},
+      "item": {{ current_page_url | json }}
+    }{% elsif request.page_type == 'article' and article != blank %},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ blog.title | json }},
+      "item": {{ blog.url | prepend: canonical_store_url | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": {{ current_page_url | json }}
+    }{% endif %}
+  ]
+}
+</script>
+
+{% if request.page_type == 'product' and product != blank %}
+  {% liquid
+    assign current_variant = product.selected_or_first_available_variant
+    assign product_description = product.description | strip_html | strip_newlines | strip | default: store_description
+    assign product_price = current_variant.price | money_without_currency | replace: ',', ''
+    assign product_brand_name = product.metafields.custom.brand.value | default: product.metafields.custom.brand
+  %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "{{ current_page_url }}#product",
+    "name": {{ product.title | json }},
+    "description": {{ product_description | truncate: 500 | json }},
+    "url": {{ current_page_url | json }}{% if product.images.size > 0 %},
+    "image": [
+      {% for image in product.images %}
+        {{ image | image_url: width: 1200 | prepend: 'https:' | json }}{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]{% endif %}{% if product.type != blank %},
+    "category": {{ product.type | json }}{% endif %}{% if current_variant.sku != blank %},
+    "sku": {{ current_variant.sku | json }}{% endif %},
+    {% if product_brand_name != blank %}"brand": {
+      "@type": "Brand",
+      "name": {{ product_brand_name | json }}
+    },{% endif %}
+    "offers": {
+      "@type": "Offer",
+      "url": {{ current_page_url | json }},
+      "priceCurrency": {{ currency_code | json }},
+      "price": {{ product_price | json }},
+      "availability": "https://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}",
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": {
+        "@id": "{{ canonical_store_url }}/#organization"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is this product for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This product is offered as a Catholic religious gift, book, church good, or devotional item. Read the product description for occasion, material, sizing, and care details when provided."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I order this online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Choose an available variant, add it to your cart, and complete checkout through Shopify."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I visit the physical shop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Shower of Roses has a physical religious shop at 360 West Boylston Street, West Boylston, Massachusetts 01583."
+        }
+      }
+    ]
+  }
+  </script>
+{% elsif request.page_type == 'collection' and collection != blank %}
+  {% liquid
+    assign collection_description = collection.description | strip_html | strip_newlines | strip | default: store_description
+  %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "{{ current_page_url }}#collection",
+    "name": {{ collection.title | json }},
+    "description": {{ collection_description | truncate: 500 | json }},
+    "url": {{ current_page_url | json }},
+    "isPartOf": {
+      "@id": "{{ canonical_store_url }}/#online-store"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What can I find in this collection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This collection helps shoppers browse Catholic religious gifts and church goods by theme, occasion, or product type."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I shop this collection online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Available products in this collection can be selected and purchased through the Shopify storefront."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is the physical shop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Shower of Roses has a physical religious shop at 360 West Boylston Street, West Boylston, Massachusetts 01583."
+        }
+      }
+    ]
+  }
+  </script>
+{% endif %}

@@ -22,7 +22,8 @@
     <p class="gift-card__subhead">{{ 'gift_cards.issued.subtext' | t }}</p>
 
     {% if gift_card.image %}
-      <img class="gift-card__image" src="{{ gift_card.image | image_url: width: 600 }}" alt="{{ shop.name }} gift card">
+      {% assign gift_card_image_alt = shop.name | append: ' gift card' %}
+      {{ gift_card.image | image_url: width: 600 | image_tag: class: 'gift-card__image', alt: gift_card_image_alt }}
     {% endif %}
 
     <p class="gift-card__amount">{{ gift_card.balance | money }}</p>

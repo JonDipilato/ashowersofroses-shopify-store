@@ -2,7 +2,7 @@
   <article class="product-card card-surface">
     <a class="product-card__media" href="{{ product.url }}">
       {% if product.featured_image %}
-        {{ product.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 25vw, (min-width: 600px) 50vw, 100vw', widths: '220,320,480,640,720', alt: product.featured_image.alt | escape }}
+        {{ product.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 25vw, (min-width: 600px) 50vw, 100vw', widths: '220,320,480,640,720', alt: product.featured_image.alt | default: product.title | escape }}
       {% endif %}
 
       <div class="product-card__badges">
@@ -37,7 +37,7 @@
         {% if product.available == false %}
           <button class="btn btn-primary btn-wide btn-compact" disabled>Sold out</button>
         {% elsif product.variants.size == 1 %}
-          <form class="product-card__atc-form" action="/cart/add" method="post" data-quick-atc>
+          <form class="product-card__atc-form" action="{{ routes.cart_add_url }}" method="post" data-quick-atc>
             <input type="hidden" name="id" value="{{ product.variants.first.id }}">
             <input type="hidden" name="quantity" value="1">
             <button type="submit" class="btn btn-primary btn-wide btn-compact">Add to cart</button>

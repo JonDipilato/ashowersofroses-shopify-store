@@ -50,5 +50,13 @@
       "title": "The page cannot be found",
       "subtext": "It may have moved during the season."
     }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Gift card",
+      "subtext": "Use this gift card toward eligible products in the online store.",
+      "add_to_apple_wallet": "Add to Apple Wallet",
+      "expired": "This gift card has expired."
+    }
   }
 }

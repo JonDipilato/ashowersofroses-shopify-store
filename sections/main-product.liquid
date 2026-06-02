@@ -1,6 +1,7 @@
 {% liquid
   assign current_variant = product.selected_or_first_available_variant
   assign featured_media = current_variant.featured_image | default: product.featured_image
+  assign featured_media_alt = featured_media.alt | default: product.title
   assign story_metafield = product.metafields.custom.story_excerpt
   assign product_story = blank
 
@@ -18,7 +19,7 @@
     <div class="product-media">
       {% if featured_media %}
         <div class="product-media__featured">
-          {{ featured_media | image_url: width: 1500 | image_tag: widths: '480,720,960,1200,1500', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'eager', data-featured-image: true }}
+          {{ featured_media | image_url: width: 1500 | image_tag: widths: '480,720,960,1200,1500', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'eager', data-featured-image: true, alt: featured_media_alt | escape }}
         </div>
       {% endif %}
 
@@ -33,7 +34,7 @@
               data-alt="{{ image.alt | escape }}"
               aria-current="{% if featured_media == image %}true{% else %}false{% endif %}"
             >
-              {{ image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '120,160,200', sizes: '72px' }}
+              {{ image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '120,160,200', sizes: '72px', alt: image.alt | default: product.title | escape }}
             </button>
           {% endfor %}
         </div>
@@ -50,6 +51,16 @@
       {% if product_story != blank %}
         <p class="product-details__story">{{ product_story }}</p>
       {% endif %}
+
+      <div class="answer-block product-answer-block card-surface">
+        <p class="section-kicker">Quick answer</p>
+        <h2>{{ product.title }} from A Shower of Roses</h2>
+        <p>
+          <strong>{{ product.title }}</strong> is available to order online from A Shower of Roses,
+          a Catholic religious shop in West Boylston, Massachusetts. Use this page to confirm current
+          price, availability, variants, product details, and photos before checkout.
+        </p>
+      </div>
 
       <aside class="info-panel">
         <h3>{{ section.settings.fulfillment_heading }}</h3>
@@ -70,6 +81,15 @@
               {{ first_location.location.name }}
             </li>
           {% endif %}
+        </ul>
+      </aside>
+
+      <aside class="info-panel product-trust-panel">
+        <h3>Shop with confidence</h3>
+        <ul>
+          <li>Order available products online through the Shopify storefront.</li>
+          <li>Visit or contact the religious shop at 360 West Boylston Street, West Boylston, MA 01583.</li>
+          <li>Use the live policy links on this site for current shipping and return details.</li>
         </ul>
       </aside>
 
@@ -131,13 +151,29 @@
         </details>
       </div>
 
+      <div class="product-faq card-surface">
+        <h2>Product questions</h2>
+        <details>
+          <summary>What is this product for?</summary>
+          <p>This product is offered as a Catholic religious gift, book, church good, or devotional item. Read the product description for occasion, material, sizing, and care details when provided.</p>
+        </details>
+        <details>
+          <summary>Can I order this online?</summary>
+          <p>Yes. Choose an available variant, add it to your cart, and complete checkout through Shopify.</p>
+        </details>
+        <details>
+          <summary>Can I visit the physical shop?</summary>
+          <p>A Shower of Roses has a physical religious shop at 360 West Boylston Street, West Boylston, Massachusetts 01583.</p>
+        </details>
+      </div>
+
       <div class="sticky-atc">
         <div class="sticky-atc__meta">
           <p class="sticky-atc__label">Ready to gift</p>
           <p class="sticky-atc__title">{{ product.title }}</p>
           {% render 'price', product: product %}
         </div>
-        <form method="post" action="/cart/add">
+        <form method="post" action="{{ routes.cart_add_url }}">
           <input type="hidden" name="id" value="{{ current_variant.id }}" data-sticky-variant-input>
           <input type="hidden" name="quantity" value="1">
           <button class="btn btn-primary" type="submit" data-cart-submit{% unless current_variant.available %} disabled{% endunless %}>
@@ -169,19 +205,19 @@
       "type": "text",
       "id": "shipping_note",
       "label": "Shipping note",
-      "default": "Orders ship quickly with tracking and careful gift-safe packing."
+      "default": "Use the shipping policy link or contact the shop for current fulfillment questions."
     },
     {
       "type": "text",
       "id": "gift_ready_heading",
       "label": "Gift-ready heading",
-      "default": "Gift-ready finishing"
+      "default": "Gift guidance"
     },
     {
       "type": "textarea",
       "id": "gift_ready_text",
       "label": "Gift-ready text",
-      "default": "Add premium wrapping and a handwritten enclosure for sacramental milestones."
+      "default": "Contact the shop with the occasion if you would like help choosing a fitting Catholic gift."
     }
   ]
 }

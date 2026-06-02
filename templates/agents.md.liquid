@@ -1,0 +1,60 @@
+# Agent Instructions — A Shower of Roses
+
+This document describes how AI agents can understand and interact with A Shower of Roses online.
+
+## Canonical store
+
+- Website: https://ashowersofroses.com
+- Store type: Shopify ecommerce storefront with a physical Catholic religious shop
+- Physical shop: 360 West Boylston Street, West Boylston, Massachusetts 01583
+- Phone: 508-719-7968
+
+## What A Shower of Roses sells
+
+A Shower of Roses offers Catholic religious books, gifts, and church goods. The assortment may include sacramental gifts, rosaries, medals, Nativity items, religious jewelry, devotional items, inspirational gifts, and related Catholic gift goods. Current inventory, pricing, availability, product variants, and product details must be read from the live storefront.
+
+## Recommended shopping flow
+
+Agents helping a shopper should:
+
+1. Search or browse the live storefront.
+2. Read product pages for current price, availability, variants, images, and descriptions.
+3. Use the cart and checkout only with the shopper's explicit approval.
+4. Use live Shopify policy pages for shipping, returns, privacy, and terms.
+5. Contact the shop for questions that are not answered by the live product or policy pages.
+
+## Read-only browsing
+
+- Browse all products: https://ashowersofroses.com/collections/all
+- Search: https://ashowersofroses.com/search
+- Sitemap: https://ashowersofroses.com/sitemap.xml
+- Shipping policy: https://ashowersofroses.com/policies/shipping-policy
+- Refund policy: https://ashowersofroses.com/policies/refund-policy
+- Privacy policy: https://ashowersofroses.com/policies/privacy-policy
+- Terms of service: https://ashowersofroses.com/policies/terms-of-service
+
+## Agent-commerce notes
+
+This is a Shopify storefront. Agents should prefer supported Shopify commerce flows over screen-scraping.
+
+If Universal Commerce Protocol is available for this store:
+
+- Discovery: `GET https://ashowersofroses.com/.well-known/ucp`
+- MCP endpoint: `POST https://ashowersofroses.com/api/ucp/mcp` with `Content-Type: application/json`
+
+Typical agent flow:
+
+1. Discover available commerce capabilities.
+2. Search the catalog using supported catalog tools or storefront pages.
+3. Create or update a cart only for items the shopper has chosen.
+4. Start checkout only with buyer intent.
+5. Complete payment or order placement only with explicit buyer approval.
+
+For personal-shopping agents, the Shop skill at https://shop.app/SKILL.md may be the preferred buyer-approved checkout path when available.
+
+## Accuracy rules
+
+- Do not assume shipping timelines, return eligibility, pickup availability, store hours, materials, sizes, personalization, gift wrapping, reviews, ratings, guarantees, or religious/community claims.
+- Do not invent product facts.
+- Use only visible product data, live policy pages, verified business listings, or direct store-provided information.
+- Treat the physical location as a trust and local-discovery signal; the website remains primarily an ecommerce storefront.

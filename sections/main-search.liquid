@@ -50,7 +50,7 @@
       {% else %}
         <div class="empty-state" style="margin-top: 1.4rem; text-align: center; padding: 2.5rem 1rem;">
           <p>No results for &ldquo;{{ search.terms }}&rdquo;</p>
-          <a href="/collections/all" class="btn btn-primary" style="margin-top: 1rem;">Browse all products</a>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary" style="margin-top: 1rem;">Browse all products</a>
         </div>
       {% endif %}
     {% endif %}

@@ -5,9 +5,9 @@
       "settings": {
         "show_vendor": false,
         "fulfillment_heading": "Shipping and pickup",
-        "shipping_note": "Orders ship quickly with tracking and careful gift-safe packing.",
-        "gift_ready_heading": "Gift-ready finishing",
-        "gift_ready_text": "Add premium wrapping and a handwritten enclosure for sacramental milestones."
+        "shipping_note": "Use the shipping policy link or contact the shop for current fulfillment questions.",
+        "gift_ready_heading": "Gift guidance",
+        "gift_ready_text": "Contact the shop with the occasion if you would like help choosing a fitting Catholic gift."
       }
     },
     "often_bought": {
@@ -24,8 +24,8 @@
           "type": "item",
           "settings": {
             "icon": "gift",
-            "heading": "Gift-ready",
-            "text": "Elegant wrapping and enclosure options available."
+            "heading": "Catholic gift guidance",
+            "text": "Browse by sacrament, occasion, or devotional need."
           }
         },
         "item2": {
@@ -40,8 +40,8 @@
           "type": "item",
           "settings": {
             "icon": "shield",
-            "heading": "Secure checkout",
-            "text": "Protected transactions and clear follow-up communication."
+            "heading": "Online ordering",
+            "text": "Available products can be purchased through the Shopify storefront."
           }
         }
       },

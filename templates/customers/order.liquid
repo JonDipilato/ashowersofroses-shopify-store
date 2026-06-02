@@ -8,7 +8,7 @@
       {% for line_item in order.line_items %}
         <div class="card-surface" style="padding: 1rem; display: grid; grid-template-columns: 64px 1fr; gap: 0.8rem; align-items: start;">
           {% if line_item.image %}
-            <img src="{{ line_item.image | image_url: width: 128 }}" alt="{{ line_item.title | escape }}" style="width: 64px; height: 80px; object-fit: cover; border-radius: 6px;">
+            <img src="{{ line_item.image | image_url: width: 128 }}" alt="{{ line_item.title | escape }}" width="64" height="80" style="width: 64px; height: 80px; object-fit: cover; border-radius: 6px;">
           {% else %}
             <div style="width: 64px; height: 80px; background: rgba(0,0,0,0.04); border-radius: 6px;"></div>
           {% endif %}

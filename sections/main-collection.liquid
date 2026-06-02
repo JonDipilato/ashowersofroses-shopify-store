@@ -7,6 +7,15 @@
         {% if collection.description != blank %}
           <div class="rte section-subhead">{{ collection.description }}</div>
         {% endif %}
+        <div class="answer-block collection-answer-block card-surface">
+          <p class="section-kicker">Quick answer</p>
+          <h2>{{ collection.title }} at A Shower of Roses</h2>
+          <p>
+            This collection helps shoppers browse Catholic religious gifts and church goods by theme,
+            occasion, or product type. Select an available item to review current price, variants,
+            product details, and checkout options.
+          </p>
+        </div>
       </header>
 
       <div class="collection-toolbar">
@@ -56,6 +65,22 @@
           </ul>
         </nav>
       {% endif %}
+
+      <div class="collection-faq card-surface">
+        <h2>Collection questions</h2>
+        <details>
+          <summary>What can I find in this collection?</summary>
+          <p>This collection helps shoppers browse Catholic religious gifts and church goods by theme, occasion, or product type.</p>
+        </details>
+        <details>
+          <summary>Can I shop this collection online?</summary>
+          <p>Yes. Available products in this collection can be selected and purchased through the Shopify storefront.</p>
+        </details>
+        <details>
+          <summary>Where is the physical shop?</summary>
+          <p>A Shower of Roses has a physical religious shop at 360 West Boylston Street, West Boylston, Massachusetts 01583.</p>
+        </details>
+      </div>
     </div>
   </section>
 {% endpaginate %}

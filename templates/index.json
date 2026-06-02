@@ -20,8 +20,8 @@
           "type": "item",
           "settings": {
             "icon": "gift",
-            "heading": "Gift-ready presentation",
-            "text": "Elegant wrapping and enclosure options for sacramental milestones."
+            "heading": "Catholic gift guidance",
+            "text": "Browse by sacrament, occasion, or devotional need."
           }
         },
         "trust_item_2": {
@@ -44,8 +44,8 @@
           "type": "item",
           "settings": {
             "icon": "shield",
-            "heading": "Secure checkout",
-            "text": "Protected payment and clear fulfillment communication."
+            "heading": "Online ordering",
+            "text": "Available products can be purchased through the Shopify storefront."
           }
         }
       },
