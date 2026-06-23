@@ -14,7 +14,7 @@
       "settings": {
         "show_vendor": false,
         "fulfillment_heading": "Shipping and pickup",
-        "shipping_note": "Use the shipping policy link or contact the shop for current fulfillment questions.",
+        "shipping_note": "Free shipping on every order — most pieces ship within 2–3 business days, carefully packed. Need it by a certain date? Message the shop and we'll do all we can to make it happen.",
         "gift_ready_heading": "Gift guidance",
         "gift_ready_text": "Contact the shop with the occasion if you would like help choosing a fitting Catholic gift."
       }
@@ -49,8 +49,8 @@
           "type": "item",
           "settings": {
             "icon": "shield",
-            "heading": "Online ordering",
-            "text": "Available products can be purchased through the Shopify storefront."
+            "heading": "Free shipping, always",
+            "text": "Every order ships free, wrapped with care for gift-giving."
           }
         }
       },

@@ -22,7 +22,7 @@
         "primary_label": "Shop all gifts",
         "primary_link": "/collections/all",
         "secondary_label": "Browse by sacrament",
-        "secondary_link": ""
+        "secondary_link": "/collections"
       }
     },
     "trust": {
@@ -56,8 +56,8 @@
           "type": "item",
           "settings": {
             "icon": "shield",
-            "heading": "Online ordering",
-            "text": "Available products can be purchased through the Shopify storefront."
+            "heading": "Free shipping, always",
+            "text": "Every order ships free, wrapped with care for gift-giving."
           }
         }
       },
@@ -81,10 +81,70 @@
     },
     "sacraments": {
       "type": "sacrament-collections",
+      "blocks": {
+        "baptism": {
+          "type": "collection",
+          "settings": {
+            "collection": "baptism",
+            "description": "Welcome a new soul into the faith with a keepsake to treasure for a lifetime."
+          }
+        },
+        "communion": {
+          "type": "collection",
+          "settings": {
+            "collection": "first-holy-communion",
+            "description": "Mark a child's first meeting with the Eucharist with a gift they'll keep forever."
+          }
+        },
+        "confirmation": {
+          "type": "collection",
+          "settings": {
+            "collection": "confirmation",
+            "description": "Celebrate the sealing of the Holy Spirit with a meaningful keepsake."
+          }
+        },
+        "divine_mercy": {
+          "type": "collection",
+          "settings": {
+            "collection": "divine-mercy",
+            "description": "Jesus, I trust in You — gifts for devotion to the Divine Mercy."
+          }
+        },
+        "marian": {
+          "type": "collection",
+          "settings": {
+            "collection": "marian-devotion",
+            "description": "Honor Our Lady — Ave Maria, Totus Tuus, and timeless Marian devotion."
+          }
+        },
+        "moms": {
+          "type": "collection",
+          "settings": {
+            "collection": "for-catholic-moms",
+            "description": "Faith-filled gifts for the heart of the Catholic home."
+          }
+        },
+        "art": {
+          "type": "collection",
+          "settings": {
+            "collection": "sacred-art-canvas",
+            "description": "Gallery-quality sacred masterpieces, ready to grace any wall."
+          }
+        }
+      },
+      "block_order": [
+        "baptism",
+        "communion",
+        "confirmation",
+        "divine_mercy",
+        "marian",
+        "moms",
+        "art"
+      ],
       "settings": {
         "kicker": "Sacramental path",
-        "heading": "Shop by sacrament",
-        "subheading": "Guide families and godparents to gifts that honor each sacrament with care."
+        "heading": "Shop by sacrament & occasion",
+        "subheading": "Guide families and godparents to gifts that honor each sacrament and milestone with care."
       }
     },
     "testimonials": {
