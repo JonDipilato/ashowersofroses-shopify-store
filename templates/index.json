@@ -149,6 +149,41 @@
     },
     "testimonials": {
       "type": "testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Excellent religious store to shop for Catholic traditional books, beautiful statues, and bibles. The owner is very cordial and very knowledgeable about the Catholic faith.",
+            "author": "Darlene F.",
+            "context": "Verified Google review"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Organized layout of products. Store attendant was very helpful. Nice variety of products.",
+            "author": "Nicholas M.",
+            "context": "Google Local Guide"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The owners are very kind and always willing to help.",
+            "author": "",
+            "context": "Verified Google review"
+          }
+        },
+        "t4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Cute little shop with a lot for children!",
+            "author": "",
+            "context": "Verified Google review"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
       "settings": {
         "kicker": "Customer reflections",
         "heading": "What families are saying"
