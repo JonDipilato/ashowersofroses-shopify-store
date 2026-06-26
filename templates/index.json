@@ -147,46 +147,13 @@
         "subheading": "Guide families and godparents to gifts that honor each sacrament and milestone with care."
       }
     },
-    "testimonials": {
-      "type": "testimonials",
-      "blocks": {
-        "t1": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Excellent religious store to shop for Catholic traditional books, beautiful statues, and bibles. The owner is very cordial and very knowledgeable about the Catholic faith.",
-            "author": "Darlene F.",
-            "context": "Verified Google review"
-          }
-        },
-        "t2": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Organized layout of products. Store attendant was very helpful. Nice variety of products.",
-            "author": "Nicholas M.",
-            "context": "Google Local Guide"
-          }
-        },
-        "t3": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The owners are very kind and always willing to help.",
-            "author": "",
-            "context": "Verified Google review"
-          }
-        },
-        "t4": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Cute little shop with a lot for children!",
-            "author": "",
-            "context": "Verified Google review"
-          }
-        }
-      },
-      "block_order": ["t1", "t2", "t3", "t4"],
+    "google_reviews": {
+      "type": "google-reviews",
       "settings": {
         "kicker": "Customer reflections",
-        "heading": "What families are saying"
+        "heading": "What families are saying",
+        "widget_url": "https://reputationhub.site/reputation/widgets/review_widget/LP0vMBhjtHVhDLUFyRNN",
+        "widget_height": 480
       }
     },
     "ghl_signup": {
@@ -199,7 +166,7 @@
     "trust",
     "catalog",
     "sacraments",
-    "testimonials",
+    "google_reviews",
     "ghl_signup"
   ]
 }

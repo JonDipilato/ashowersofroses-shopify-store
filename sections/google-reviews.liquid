@@ -1,0 +1,82 @@
+{% comment %}
+  Live Google reviews via the GoHighLevel reputation widget.
+  Embedded as an iframe (matches the Monthly Box GHL form pattern) with a
+  fallback fixed height, since Shopify has previously blocked the GHL resize
+  script. The script is still included last in case it is allowed to run and
+  auto-size the iframe; if blocked, the fixed height keeps the widget visible.
+{% endcomment %}
+<section class="section-shell">
+  <div class="page-width">
+    {% if section.settings.kicker != blank %}
+      <p class="section-kicker">{{ section.settings.kicker }}</p>
+    {% endif %}
+    {% if section.settings.heading != blank %}
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p class="section-subhead">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    {% if section.settings.widget_url != blank %}
+      <div class="google-reviews-embed" style="margin-top: 1.6rem;">
+        <iframe
+          class="lc_reviews_widget"
+          src="{{ section.settings.widget_url }}"
+          frameborder="0"
+          scrolling="no"
+          loading="lazy"
+          title="{{ section.settings.heading | escape }}"
+          style="min-width:100%; width:100%; height:{{ section.settings.widget_height }}px; border:none; display:block;"
+        ></iframe>
+        <script type="text/javascript" src="https://reputationhub.site/reputation/assets/review-widget.js"></script>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Google reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Customer reflections"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What families are saying"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "widget_url",
+      "label": "GHL review widget URL",
+      "info": "The src URL from your GoHighLevel review widget embed code.",
+      "default": "https://reputationhub.site/reputation/widgets/review_widget/LP0vMBhjtHVhDLUFyRNN"
+    },
+    {
+      "type": "range",
+      "id": "widget_height",
+      "label": "Widget height",
+      "min": 200,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "default": 480
+    }
+  ],
+  "presets": [
+    {
+      "name": "Google reviews"
+    }
+  ]
+}
+{% endschema %}
