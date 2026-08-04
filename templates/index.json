@@ -146,27 +146,12 @@
         "heading": "Shop by sacrament & occasion",
         "subheading": "Guide families and godparents to gifts that honor each sacrament and milestone with care."
       }
-    },
-    "google_reviews": {
-      "type": "google-reviews",
-      "settings": {
-        "kicker": "Customer reflections",
-        "heading": "What families are saying",
-        "widget_url": "https://reputationhub.site/reputation/widgets/review_widget/LP0vMBhjtHVhDLUFyRNN",
-        "widget_height": 480
-      }
-    },
-    "ghl_signup": {
-      "type": "ghl-signup",
-      "settings": {}
     }
   },
   "order": [
     "hero",
     "trust",
     "catalog",
-    "sacraments",
-    "google_reviews",
-    "ghl_signup"
+    "sacraments"
   ]
 }

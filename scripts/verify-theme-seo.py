@@ -15,7 +15,6 @@ checks = [
     ("snippets/structured-data.liquid", '"@type": "OnlineStore"', "OnlineStore schema is present"),
     ("snippets/structured-data.liquid", '"@type": "LocalBusiness"', "LocalBusiness schema is present"),
     ("snippets/structured-data.liquid", '360 West Boylston Street', "verified street address is present"),
-    ("snippets/structured-data.liquid", "assign store_phone = '+15087197968'", "verified phone is present"),
     ("snippets/structured-data.liquid", '"@type": "Product"', "Product schema is present"),
     ("snippets/structured-data.liquid", '"@type": "FAQPage"', "FAQ schema is present"),
     ("templates/agents.md.liquid", '360 West Boylston Street', "agents.md includes verified location"),
@@ -27,6 +26,16 @@ checks = [
     ("sections/main-contact.liquid", '360 West Boylston Street', "contact page includes verified location"),
 ]
 
+# Needles for filler copy are assembled at runtime so this guard file never
+# contains the literal placeholder strings it is scanning for.
+FILLER_LATIN = "Lorem" + " ipsum"
+
+# Retired GoHighLevel sub-account (location LP0vMBhjtHVhDLUFyRNN), shut down
+# July 2026. Its lead form, review widget, and LC Phone line are all dead —
+# none of these may reappear in the theme.
+DEAD_PHONE_PLAIN = "508-719-7968"
+DEAD_PHONE_E164 = "+15087197968"
+
 forbidden = [
     ("sections/main-product.liquid", "Add premium wrapping"),
     ("templates/product.json", "Add premium wrapping"),
@@ -34,8 +43,18 @@ forbidden = [
     ("sections/trust-bar.liquid", "Secure checkout"),
     ("templates/index.json", "handwritten enclosure"),
     ("templates/index.json", "Secure checkout"),
-    ("templates/index.json", "Lorem ipsum"),
+    ("templates/index.json", FILLER_LATIN),
     ("templates/index.json", "Your Paragraph text"),
+    ("snippets/structured-data.liquid", DEAD_PHONE_E164),
+    ("sections/footer.liquid", DEAD_PHONE_PLAIN),
+    ("sections/main-contact.liquid", DEAD_PHONE_PLAIN),
+    ("templates/agents.md.liquid", DEAD_PHONE_PLAIN),
+    ("templates/llms.txt.liquid", DEAD_PHONE_PLAIN),
+    ("templates/llms-full.txt.liquid", DEAD_PHONE_PLAIN),
+    ("templates/index.json", "leadconnectorhq.com"),
+    ("templates/index.json", "reputationhub.site"),
+    ("layout/theme.liquid", "leadconnectorhq.com"),
+    ("layout/theme.liquid", "msgsndr.com"),
 ]
 
 failures: list[str] = []

@@ -2,7 +2,6 @@
   assign canonical_store_url = 'https://ashowersofroses.com'
   assign store_name = shop.name | default: 'A Shower of Roses'
   assign store_description = 'A Shower of Roses is a Catholic gift shop offering saint medals, sacred-art canvases and wall decor, devotional candles, faith-based apparel, religious jewelry, and keepsake gifts for Baptism, First Communion, and Confirmation. Founded in West Boylston, Massachusetts, it now sells online and ships nationwide across the United States with free shipping on every order.'
-  assign store_phone = '+15087197968'
   assign store_street = '360 West Boylston Street'
   assign store_city = 'West Boylston'
   assign store_region = 'MA'
@@ -20,7 +19,6 @@
   "name": {{ store_name | json }},
   "url": {{ canonical_store_url | json }},
   "description": {{ store_description | json }},
-  "telephone": {{ store_phone | json }},
   "address": {
     "@type": "PostalAddress",
     "streetAddress": {{ store_street | json }},
@@ -75,7 +73,6 @@
   "name": {{ store_name | json }},
   "url": {{ canonical_store_url | json }},
   "description": {{ store_description | json }},
-  "telephone": {{ store_phone | json }},
   "address": {
     "@type": "PostalAddress",
     "streetAddress": {{ store_street | json }},
@@ -94,7 +91,6 @@
   "@id": "{{ canonical_store_url }}/#physical-store",
   "name": {{ store_name | json }},
   "url": {{ canonical_store_url | json }},
-  "telephone": {{ store_phone | json }},
   "address": {
     "@type": "PostalAddress",
     "streetAddress": {{ store_street | json }},
