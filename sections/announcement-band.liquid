@@ -6,7 +6,11 @@
       {% endif %}
       <span>{{ section.settings.message }}</span>
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
-        <a class="announcement-band__link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}</a>
+        <a
+          class="announcement-band__link"
+          href="{{ section.settings.link_url }}"
+          {% if section.settings.link_new_tab %}target="_blank" rel="noopener"{% endif %}
+        >{{ section.settings.link_label }}</a>
       {% endif %}
     </div>
   </aside>
@@ -26,24 +30,31 @@
       "type": "text",
       "id": "season",
       "label": "Liturgical season",
-      "default": "Ordinary Time"
+      "default": "Now on Etsy"
     },
     {
       "type": "text",
       "id": "message",
       "label": "Message",
-      "default": "Free shipping on every order · Made & shipped in the USA"
+      "default": "Shop the full collection of sacred art canvases, prayer candles, and Catholic gifts."
     },
     {
       "type": "text",
       "id": "link_label",
       "label": "Link label",
-      "default": "Explore collections"
+      "default": "Visit our Etsy shop"
     },
     {
-      "type": "url",
+      "type": "text",
       "id": "link_url",
-      "label": "Link"
+      "label": "Link (full URL)",
+      "default": "https://www.etsy.com/shop/AShowersOfRoses"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_new_tab",
+      "label": "Open link in a new tab",
+      "default": true
     }
   ]
 }
